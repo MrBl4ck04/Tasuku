@@ -1,4 +1,3 @@
-/* Estilos básicos para comenzar */
 body, h1, h2, ul, li {
     margin: 0;
     padding: 0;
@@ -6,21 +5,26 @@ body, h1, h2, ul, li {
     font-family: Arial, sans-serif;
 }
 
-header {
-    background: #58A4B0;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative; /* Esto permite que el logo sea posicionado absolutamente respecto a la cabecera */
+#logo-bar {
+    background: white;
+    padding: 30px 0;
+    text-align: left; /* Alinear el logo a la izquierda */
+    position: relative; /* Para posicionar el logo dentro de esta barra */
 }
 
 #logo {
     position: absolute;
     left: 10px;
-    top: 10px;
-    height: auto; /* Cambia esto para que se ajuste al tamaño natural del logo */
-    max-height: 100%; /* Esto asegurará que el logo no exceda el tamaño del encabezado */
-    z-index: 10; /* Esto asegurará que el logo se muestre encima de otros elementos */
+    top: 50%; /* Centrar el logo verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centrar el logo exactamente */
+    height: 50px; /* Ajusta esta altura como sea necesario */
+}
+
+header {
+    background: #58A4B0;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
 
 main {
@@ -32,7 +36,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+}   
 
 #categories, #calendar, #tasks {
     border: 1px solid #ddd;
