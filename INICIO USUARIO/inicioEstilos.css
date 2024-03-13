@@ -1,10 +1,5 @@
-/* Estilos básicos para comenzar */
-body, h1, h2, ul, li {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    font-family: Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 
 header {
     background: #58A4B0;
@@ -72,6 +67,95 @@ li {
 
 li:hover {
     background-color: #f5f5f5;
+}
+body, h1, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: 'Poppins', sans-serif; /* Cambiando a una fuente más moderna */
+    color: #333; /* Color de texto más suave */
+}
+
+h2 {
+    font-size: 1.5em;
+    font-family: 'Arial Narrow', cursive; /* Fredoka One es una fuente similar que es gruesa y redondeada */
+    color: #c08554; /* Un tono de café más oscuro */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 
+                 2px 2px 2px rgba(0, 0, 0, 0.1), 
+                 3px 3px 2px rgba(0, 0, 0, 0.1); /* Sombra suave para el efecto de profundidad */
+    margin-bottom: 20px; /* Espaciado debajo del título para no solapar la sombra */
+}
+
+
+header {
+    position: relative;
+    overflow: hidden; /* Para asegurar que el video no se desborde */
+}
+
+#headerImage {
+    width: 100%;
+    height: auto;
+    display: block; /* Esto eliminará cualquier espacio extra debajo de la imagen */
+}
+
+
+#logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: auto;
+    max-height: 100%;
+    z-index: 10;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px; /* Aumentando el tamaño para mejor visibilidad */
+    color: #6D6875; /* Color más suave */
+}
+
+#categories, #calendar, #tasks {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: 30%;
+    background-image: url('cuadro.jpg'); /* Reemplaza con la ruta correcta a tu imagen de cuadrícula */
+    background-size: cover; /* O utiliza 'contain' si quieres que toda la cuadrícula se muestre sin cortes */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+button {
+    padding: 10px 20px;
+    background: #C9ADA7; /* Fondo de botón más suave */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+button:hover {
+    background: #9A8C98; /* Color de hover */
+}
+
+li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+li:hover {
+    background-color: #F2E9E4; /* Color de hover más suave */
 }
 
 /* Añade aquí estilos adicionales si son necesarios */
