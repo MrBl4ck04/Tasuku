@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <meta name="google-signin-client_id" content="234507567158-vk6pc6on9pho3tc4uc5mh21r1kq8bah6.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Tasuku</title>
 </head>
 
@@ -29,7 +31,14 @@
             <form>
                 <h1>Iniciar Sesion</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <div class="social-icons">
+                        <div id="gSignInWrapper">
+                            <div id="customBtn" class="customGPlusSignIn">
+                                <span class="icon"></span>
+                                <span class="buttonText">Google</span>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
                 <span>o utiliza tu email para iniciar sesion</span>
                 <input type="email" placeholder="Email">
