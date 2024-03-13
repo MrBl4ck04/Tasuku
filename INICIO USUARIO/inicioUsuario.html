@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas Tasuku</title>
+    <link rel="stylesheet" href="inicioEstilos.css">
+    <link rel="script" href="inicioBack.js">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="tasuku Logo" id="logo"> <!-- Asegúrate de reemplazar 'logo.png' con el nombre de archivo correcto -->
+        <h1>tasuku</h1>
+    </header>
+    <main>
+        <aside id="categories">
+            <div class="title-bar">
+                <h2>Categorías</h2>
+                <button id="addCategory">+</button>
+            </div>
+            <ul>
+                <li>Casa</li>
+                <li>Universidad</li>
+                <li>Ejercicio</li>
+            </ul>
+        </aside>
+        <section id="calendar">
+            <div class="title-bar">
+                <h2>Calendario</h2>
+                <!-- Botón de añadir si es necesario -->
+            </div>
+            <!-- Implementación del calendario aquí -->
+        </section>
+        <section id="tasks">
+            <div class="title-bar">
+                <h2>Tareas</h2>
+                <button id="addTask">+</button>
+            </div>
+            <ul id="taskList">
+                <!-- Las tareas se cargarán aquí -->
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
