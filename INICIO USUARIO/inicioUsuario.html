@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
-    <link rel="script" href="inicioBack.js">
 </head>
 <body>
     <div id="logo-bar">
@@ -35,10 +34,31 @@
                 <h2>Tareas</h2>
                 <button id="addTask">+</button>
             </div>
-            <ul id="taskList">
-            </ul>
+            <div id="taskList" class="task-list">
+                <!-- Las tareas se cargarán aquí -->
+            </div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addTaskForm">
+                <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
+                <select id="taskCategory">
+                    <option value="Casa">Casa</option>
+                    <option value="Universidad">Universidad</option>
+                    <option value="Ejercicio">Ejercicio</option>
+                </select>
+                <select id="taskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="taskDate">
+                <button type="submit">Añadir Tarea</button>
+            </form>
+        </div>
+    </div>
+    <script src="inicioBack.js"></script>
 </body>
 </html>
