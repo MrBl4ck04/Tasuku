@@ -1,21 +1,35 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
+=======
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: Arial, sans-serif;
+}
+>>>>>>> origin/usuarioIniciado
 
-header {
-    background: #58A4B0;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative; /* Esto permite que el logo sea posicionado absolutamente respecto a la cabecera */
+#logo-bar {
+    background: white;
+    padding: 30px 0;
+    text-align: left; /* Alinear el logo a la izquierda */
+    position: relative; /* Para posicionar el logo dentro de esta barra */
 }
 
 #logo {
     position: absolute;
     left: 10px;
-    top: 10px;
-    height: auto; /* Cambia esto para que se ajuste al tamaño natural del logo */
-    max-height: 100%; /* Esto asegurará que el logo no exceda el tamaño del encabezado */
-    z-index: 10; /* Esto asegurará que el logo se muestre encima de otros elementos */
+    top: 50%; /* Centrar el logo verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centrar el logo exactamente */
+    height: 50px; /* Ajusta esta altura como sea necesario */
+}
+
+header {
+    background: #58A4B0;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
 
 main {
@@ -27,7 +41,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+}   
 
 #categories, #calendar, #tasks {
     border: 1px solid #ddd;
@@ -158,4 +172,67 @@ li:hover {
     background-color: #F2E9E4; /* Color de hover más suave */
 }
 
-/* Añade aquí estilos adicionales si son necesarios */
+.task-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.task-name {
+    flex-grow: 1;
+}
+
+.task-icon {
+    width: 20px; /* Ajusta según el tamaño de tu icono */
+    height: 20px; /* Ajusta según el tamaño de tu icono */
+}
+
+.status-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
