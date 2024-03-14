@@ -5,38 +5,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.close').addEventListener('click', closeAddTaskModal);
 });
 
-function loadTasks() {
+function loadTasks(category = null) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
-    tasks.forEach((task, index) => {
+    const filteredTasks = category ? tasks.filter(task => task.category === category) : tasks;
+
+    filteredTasks.forEach((task, index) => {
         const taskItem = document.createElement('div');
         taskItem.className = 'task-item';
 
-        // Columna del nombre de la tarea
         const taskName = document.createElement('div');
         taskName.textContent = task.name;
         taskName.className = 'task-name';
         taskItem.appendChild(taskName);
 
-        // Columna del ícono de la categoría
         const taskCategoryIcon = document.createElement('div');
         const iconImg = document.createElement('img');
-        iconImg.src = task.icon; // La URL del ícono deberá estar en el objeto de la tarea
+        iconImg.src = task.icon;
         iconImg.className = 'task-icon';
         taskCategoryIcon.appendChild(iconImg);
         taskItem.appendChild(taskCategoryIcon);
 
-        // Columna del estado de la tarea
         const taskStatus = document.createElement('div');
         taskStatus.className = 'task-status';
         const statusIndicator = document.createElement('span');
         statusIndicator.className = 'status-indicator';
-        statusIndicator.style.backgroundColor = task.statusColor; // El color se basa en el estado de la tarea
+        statusIndicator.style.backgroundColor = task.statusColor;
         taskStatus.appendChild(statusIndicator);
         taskItem.appendChild(taskStatus);
 
-        // Doble clic para editar la tarea
         taskItem.addEventListener('dblclick', () => {
             const newName = prompt('Edita tu tarea:', task.name);
             if (newName !== null && newName !== task.name) {
@@ -45,7 +43,6 @@ function loadTasks() {
             }
         });
 
-        // Clic derecho para eliminar la tarea
         taskItem.addEventListener('contextmenu', (event) => {
             event.preventDefault();
             if (confirm('¿Quieres eliminar esta tarea?')) {
@@ -107,4 +104,11 @@ document.getElementById('addTask').addEventListener('click', () => {
     tasks.push(task);
     saveTasks(tasks);
     
+});
+
+document.querySelectorAll('#categories ul li').forEach(item => {
+    item.addEventListener('click', (event) => {
+        const category = event.target.getAttribute('data-category');
+        loadTasks(category);
+    });
 });
