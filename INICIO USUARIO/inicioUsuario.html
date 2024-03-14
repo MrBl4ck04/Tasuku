@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
-
-    <link rel="script" href="inicioBack.js">
+    <header>
+        <img src="logo.png" alt="tasuku Logo" id="logo"> 
+        <h1>
+                TASUKU 
+             </h1>
+        <img src="cabezera2.png" alt="Imagen de cabecera" id="headerImage">
+        <!-- Asegúrate de reemplazar 'headerImage.jpg' con el nombre de archivo correcto de tu imagen -->
+    </header>
 </head>
-<header>
-    <img src="logo.png" alt="tasuku Logo" id="logo"> 
-    <h1>
-            TASUKU 
-         </h1>
-    <img src="cabezera2.png" alt="Imagen de cabecera" id="headerImage">
-    <!-- Asegúrate de reemplazar 'headerImage.jpg' con el nombre de archivo correcto de tu imagen -->
-</header>
-
-
 <body>
     <div class="container">
         <nav class="nav">
@@ -31,9 +26,11 @@
             </ul>
         </nav>
     </div>
-    
+    <div id="logo-bar">
+        <img src="logo.png" alt="tasuku Logo" id="logo">
+    </div>
     <header>
-        <h1>Organizate de manera creativa</h1>
+        <h1>Bienvenido Usuario</h1>
     </header>
     <main>
         <aside id="categories">
@@ -42,28 +39,46 @@
                 <button id="addCategory">+</button>
             </div>
             <ul>
-                <li>Casa</li>
-                <li>Universidad</li>
-                <li>Ejercicio</li>
+                <li data-category="Casa">Casa</li>
+                <li data-category="Universidad">Universidad</li>
+                <li data-category="Ejercicio">Ejercicio</li>
             </ul>
         </aside>
         <section id="calendar">
             <div class="title-bar">
                 <h2>Calendario</h2>
-                <!-- Botón de añadir si es necesario -->
             </div>
-            <!-- Implementación del calendario aquí -->
         </section>
         <section id="tasks">
             <div class="title-bar">
                 <h2>Tareas</h2>
                 <button id="addTask">+</button>
             </div>
-            <ul id="taskList">
+            <div id="taskList" class="task-list">
                 <!-- Las tareas se cargarán aquí -->
-            </ul>
+            </div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addTaskForm">
+                <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
+                <select id="taskCategory">
+                    <option value="Casa">Casa</option>
+                    <option value="Universidad">Universidad</option>
+                    <option value="Ejercicio">Ejercicio</option>
+                </select>
+                <select id="taskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="taskDate">
+                <button type="submit">Añadir Tarea</button>
+            </form>
+        </div>
+    </div>
+    <script src="inicioBack.js"></script>
 </body>
 </html>

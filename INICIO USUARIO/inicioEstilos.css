@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 body,h2, ul, li {
@@ -245,26 +246,58 @@ li:hover {
     opacity: 0;
 }
 
+/* Estilo básico para el botón de menú */
 .menu-button {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: var(--menu-bg-color);
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    text-align: center;
-    line-height: 50px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: relative; /* Necesario para posicionar las líneas del menú */
+}
+
+/* Crear las tres líneas para el ícono de menú */
+.menu-button::before, .menu-button::after, .menu-button i::before {
+    content: '';
+    display: block;
+    width: 30px; /* Ancho de las líneas */
+    height: 2px; /* Altura de las líneas */
+    background: var(--menu-button-color);
+    position: absolute;
+}
+
+.menu-button::before {
+    top: 18px; /* Posición de la línea superior */
+}
+
+.menu-button::after {
+    bottom: 18px; /* Posición de la línea inferior */
+}
+
+.menu-button i::before {
+    background: none;
 }
 
 .menu-button i {
-    color: var(--menu-button-color);
-    font-size: 1.5rem;
+    position: relative;
+    width: 30px;
+    height: 2px;
+    background: var(--menu-button-color); /* Línea del medio */
 }
+
+/* Estilo para el efecto de resplandor al pasar el ratón */
+.menu-button:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
 
 .menu {
     visibility: hidden;
-    opacity: 0;
+    opacity: 2;
     position: absolute;
     right: 0;
     top: 60px;
@@ -290,18 +323,16 @@ li:hover {
 
 #menu-toggle:checked + .menu-button + .menu {
     visibility: visible;
-    opacity: 1;
+    opacity: 2;
 }
 
 .menu li a:hover{
         background-color: transparent; /* Elimina el fondo blanco */
         box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Añade un resplandor alrededor del enlace */
 }
-.menu-button:hover {
-    background-color: darken(var(--menu-bg-color), 0%);
-}
+
 .menu li a span {
-    opacity: 1; /* Asegúrate de que no esté oculto */
+    opacity: 2; /* Asegúrate de que no esté oculto */
     transition: opacity 0.3s ease;
     margin-left: 8px; /* Ajusta según necesidad para espacio entre ícono y texto */
 }
