@@ -38,13 +38,99 @@ main {
     align-items: center;
 }   
 
-#categories, #calendar, #tasks {
+#categories, #tasks {
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
     width: 30%;
     background: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#calendar{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos hijos horizontalmente al centro */
+    justify-content: start; /* Alinea los elementos hijos verticalmente al principio */
+    padding: 10px;
+    background: #ddd;
+}
+
+#calendar .calendar__info{
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+#calendar .calendar__prev, #calendar .calendar__next{
+    color: #a7dd11;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+#calendar .calendar__prev{
+    margin-right: auto;
+}
+
+#calendar .calendar__next{
+    margin-left: auto;
+}
+
+#calendar .calendar__week, #calendar .calendar__dates{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+}
+
+
+#calendar .calendar__month, #calendar .calendar__year{
+    padding: .5em 1em;
+}
+
+#calendar .calendar__item{
+    text-align: center;
+    line-height: 2;
+}
+
+#calendar .calendar__today{
+    background-color: #ddd;
+    color: red;
+    width: 50%;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#calendar .calendar__last-days{
+    opacity: .3;
+}
+
+/* Para el título de Calendario */
+#calendar h2 {
+    /* Ajusta el estilo de tu título de Calendario aquí */
+    margin-bottom: 20px; /* Añade un espacio debajo del título */
+}
+
+/* Para la barra de información del calendario (mes y año) */
+.calendar__info {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
+    margin-bottom: 20px; /* Añade un espacio debajo de la barra de información del mes */
+}
+
+/* Para los nombres de los días de la semana */
+.calendar__week {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
+    margin-bottom: 20px; /* Añade un espacio debajo de los nombres de los días */
+}
+
+/* Para los días del mes */
+.calendar__dates {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    flex-wrap: wrap; /* Permite que los elementos de los días se envuelvan */
+    justify-content: start; /* Alinea los días al principio */
 }
 
 h2 {
