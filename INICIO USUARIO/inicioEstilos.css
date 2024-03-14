@@ -10,19 +10,18 @@ body,h2, ul, li {
 }
 h1{
     font-size: 3em;
-    font-family: 'Gugi'; /* Fredoka One es una fuente similar que es gruesa y redondeada */
+    font-family: 'Gugi'; 
     color: #f6f6f6;
 }
 #logo-bar {
     background: white;
     padding: 15 0;
-    text-align: left; /* Alinear el logo a la izquierda */
-    position: relative; /* Para posicionar el logo dentro de esta barra */
+    text-align: left; 
+    position: relative; 
 }
 
 #logo {
-    /* Ajusta el tamaño del logo según lo que necesites */
-    width: 100px; /* Este es un valor de ejemplo, ajústalo según el tamaño que desees */
+    width: 100px; 
     height: auto;
     position: flex;
     left: 10px;
@@ -37,11 +36,6 @@ header {
     text-align: center;
     padding: 10px 0;
     position: relative;
-}
-
-main {
-    display: flex;
-    justify-content: space-between;
 }
 
 .title-bar {
@@ -59,9 +53,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #429293;
-}
 
 ul {
     padding: 0;
@@ -87,12 +78,12 @@ body, ul, li {
 
 h2 {
     font-size: 1.5em;
-    font-family: 'Saira Condensed', cursive; /* Fredoka One es una fuente similar que es gruesa y redondeada */
-    color: #c08554; /* Un tono de café más oscuro */
+    font-family: 'Saira Condensed', cursive; 
+    color: #c08554; 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 
                  2px 2px 2px rgba(0, 0, 0, 0.1), 
                  3px 3px 2px rgba(0, 0, 0, 0.1); /* Sombra suave para el efecto de profundidad */
-    margin-bottom: 20px; /* Espaciado debajo del título para no solapar la sombra */
+    margin-bottom: 10px; /* Espaciado debajo del título para no solapar la sombra */
 }
 
 
@@ -124,7 +115,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px; /* Aumentando el tamaño para mejor visibilidad */
+    font-size: 15px; /* Aumentando el tamaño para mejor visibilidad */
     color: #6D6875; /* Color más suave */
 }
 
@@ -132,24 +123,24 @@ main {
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
-    width: 30%;
-    background-image: url('cuadro.jpg'); /* Reemplaza con la ruta correcta a tu imagen de cuadrícula */
-    background-size: cover; /* O utiliza 'contain' si quieres que toda la cuadrícula se muestre sin cortes */
+    width: 50%;
+    background-image: url('cuadro.jpg');
+    background-size: cover; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 
 button {
     padding: 10px 20px;
-    background: #C9ADA7; /* Fondo de botón más suave */
+    background: #C9ADA7; 
     color: white;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease; /* Transición suave para el efecto hover */
+    transition: background 0.3s ease; 
 }
 
 button:hover {
-    background: #9A8C98; /* Color de hover */
+    background: #9A8C98; 
 }
 
 li {
@@ -184,8 +175,8 @@ li:hover {
 }
 
 .task-icon {
-    width: 20px; /* Ajusta según el tamaño de tu icono */
-    height: 20px; /* Ajusta según el tamaño de tu icono */
+    width: 20px; 
+    height: 20px;
 }
 
 .status-indicator {
@@ -246,7 +237,7 @@ li:hover {
     opacity: 0;
 }
 
-/* Estilo básico para el botón de menú */
+
 .menu-button {
     display: flex;
     justify-content: center;
@@ -257,7 +248,7 @@ li:hover {
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    position: relative; /* Necesario para posicionar las líneas del menú */
+    position: relative;
 }
 
 /* Crear las tres líneas para el ícono de menú */
@@ -271,11 +262,11 @@ li:hover {
 }
 
 .menu-button::before {
-    top: 18px; /* Posición de la línea superior */
+    top: 18px; 
 }
 
 .menu-button::after {
-    bottom: 18px; /* Posición de la línea inferior */
+    bottom: 18px; 
 }
 
 .menu-button i::before {
@@ -286,10 +277,9 @@ li:hover {
     position: relative;
     width: 30px;
     height: 2px;
-    background: var(--menu-button-color); /* Línea del medio */
+    background: var(--menu-button-color); 
 }
 
-/* Estilo para el efecto de resplandor al pasar el ratón */
 .menu-button:hover {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
@@ -335,4 +325,92 @@ li:hover {
     opacity: 2; /* Asegúrate de que no esté oculto */
     transition: opacity 0.3s ease;
     margin-left: 8px; /* Ajusta según necesidad para espacio entre ícono y texto */
+}
+/*Configuracion del main*/
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to bottom, #3a925a 0%, #023002 100%);
+}
+.modal-content {
+    background-color: #f5f5dc; /* Color beige */
+    margin: 10% auto; /* Centrado con menos margen superior */
+    padding: 20px;
+    border-radius: 20px; /* Esquinas curvas */
+    width: 30%; /* Ancho reducido */
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    display: flex; /* Para flexbox layout */
+    position: relative; /* Para posicionar imágenes absolutamente dentro del modal */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+.modal-header {
+    font-size: 1.5rem; /* Tamaño del título */
+    color: #333; /* Color del texto */
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.modal-content > div {
+    flex-basis: 50%; /* Cada columna toma la mitad del ancho del modal */
+    padding: 10px; /* Espaciado interno */
+}
+
+input[type="text"],
+input[type="date"],
+select,
+button[type="submit"] {
+    width: 90%; /* Ancho reducido */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+button[type="submit"] {
+    background-color: #0f3d11; /* Color de fondo */
+    width: 40px; /* Tamaño del botón */
+    height: 40px;
+    border-radius: 50%; /* Hacerlo circular */
+    position: absolute; /* Posicionamiento absoluto */
+    bottom: -20px; /* Posición debajo del modal */
+    left: calc(50% - 20px); /* Centrado horizontalmente */
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Aumentar tamaño del '+' */
+    color: white; /* Color del '+' */
+}
+
+/* Añadir los textos proporcionados como etiquetas */
+.modal-label {
+    display: block; /* Ocupa toda la anchura */
+    margin-bottom: 5px; /* Espacio antes del campo */
+    font-weight: bold; /* Hace que la etiqueta sea negrita */
+}
+
+/* Posicionamiento de las imágenes */
+#thankyou-icon,
+#notes-icon {
+    width: 50px; /* Tamaño de la imagen ajustado */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 10px; /* Posición desde arriba */
+}
+
+#thankyou-icon {
+    left: 10px; /* Posición desde la izquierda */
+}
+
+#notes-icon {
+    right: 10px; /* Posición desde la derecha */
+    bottom: 10px; /* Posición desde abajo */
+    top: auto; /* Anula la posición superior predeterminada */
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
     <header>
         <img src="logo.png" alt="tasuku Logo" id="logo"> 
         <h1>
@@ -61,6 +62,7 @@
     </main>
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
+            <div class="modal-header">Añade nueva Tarea</div>
             <span class="close">&times;</span>
             <form id="addTaskForm">
                 <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
@@ -75,8 +77,10 @@
                     <option value="Completada">Completada</option>
                 </select>
                 <input type="date" id="taskDate">
-                <button type="submit">Añadir Tarea</button>
+                <button type="submit">+</button>
             </form>
+            <img src="thank_you-removebg-preview.png" alt="Thank You!" id="thankyou-icon">
+        <img src="notes-removebg-preview.png" alt="Notes" id="notes-icon">
         </div>
     </div>
     <script src="inicioBack.js"></script>
