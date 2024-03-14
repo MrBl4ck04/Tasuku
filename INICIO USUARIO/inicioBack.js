@@ -52,6 +52,7 @@ function loadTasks(category = null) {
         });
 
         taskList.appendChild(taskItem);
+        markDateOnCalendar(task.date, task.statusColor);
     });
 }
 
@@ -88,6 +89,32 @@ function addTask(event) {
     tasks.push(task);
     saveTasks(tasks);
     closeAddTaskModal();
+
+    // Marcar la fecha en el calendario
+    markDateOnCalendar(taskDate, task.statusColor);
+}
+
+function markDateOnCalendar(date, statusColor) {
+    const calendarDates = document.querySelectorAll('.calendar__date');
+    const [year, month, day] = date.split('-').map(Number);
+
+    // Formatear el mes para que coincida con el índice del array
+    const monthIndex = month - 1;
+
+    // Iterar sobre los elementos de fecha en el calendario
+    calendarDates.forEach(calendarDate => {
+        const dateText = calendarDate.textContent.trim();
+        if (dateText !== '') {
+            const calendarDay = parseInt(dateText, 10);
+            if (calendarDay === day) {
+                // Comparar el año y el mes para asegurarse de que coincidan
+                if (currentYear === year && monthNumber === monthIndex) {
+                    calendarDate.style.backgroundColor = statusColor;
+                    calendarDate.style.color = 'white'; // Asegurar que el texto sea legible
+                }
+            }
+        }
+    });
 }
 
 function getStatusColor(status) {

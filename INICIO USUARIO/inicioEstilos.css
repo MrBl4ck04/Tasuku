@@ -133,6 +133,11 @@ main {
     justify-content: start; /* Alinea los días al principio */
 }
 
+.marked-date {
+    background-color: #FFD700; /* Cambia este color al que desees para las fechas marcadas */
+    color: black;
+}
+
 h2 {
     font-size: 1.5em;
 }
