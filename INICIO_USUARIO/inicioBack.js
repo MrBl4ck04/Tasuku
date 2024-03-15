@@ -598,31 +598,37 @@ document.addEventListener('DOMContentLoaded', () => {
   
     
     function savePreferences() {
-        const preferences = {
+        const currentUser = sessionStorage.getItem('currentUserName');
+        const userData = JSON.parse(localStorage.getItem(currentUser)) || {};
+    
+        userData.preferences = {
             backgroundColorStart: document.getElementById('backgroundColorStart').value,
             backgroundColorMiddle: document.getElementById('backgroundColorMiddle').value,
             backgroundColorEnd: document.getElementById('backgroundColorEnd').value,
             taskColor: document.getElementById('taskColor').value,
         };
-        
-        localStorage.setItem('userPreferences', JSON.stringify(preferences));
+    
+        localStorage.setItem(currentUser, JSON.stringify(userData));
     }
+    
 
     // Actualizamos la llamada al botón Aplicar para que use `applyCustomization`
     document.querySelector('#settingsModal .apply-button').addEventListener('click', applyCustomization);
     
     function loadPreferences() {
-        const preferences = JSON.parse(localStorage.getItem('userPreferences'));
-        if (preferences) {
-            document.querySelector('header').style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;
-            document.querySelector('main').style.background = `linear-gradient(to bottom, ${backgroundColorEnd} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorStart} 100%)`;
-            const headerElement = document.querySelector('h1'); // Seleccionar el header dentro del body
-            headerElement.style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;        // Actualizar el color de fondo de cada tarea
-            document.querySelectorAll('.task-item').forEach(task => {
-                task.style.backgroundColor = preferences.taskColor;
-            });
+        const currentUser = sessionStorage.getItem('currentUserName');
+        if (currentUser) {
+            const userData = JSON.parse(localStorage.getItem(currentUser));
+    
+            if (userData && userData.preferences) {
+                document.querySelector('header').style.background = `linear-gradient(to bottom, ${userData.preferences.backgroundColorStart} 0%, ${userData.preferences.backgroundColorMiddle} 50%, ${userData.preferences.backgroundColorEnd} 100%)`;
+                document.querySelector('main').style.background = `linear-gradient(to bottom, ${userData.preferences.backgroundColorEnd} 0%, ${userData.preferences.backgroundColorMiddle} 50%, ${userData.preferences.backgroundColorStart} 100%)`;
+                document.querySelectorAll('.task-item').forEach(task => {
+                    task.style.backgroundColor = userData.preferences.taskColor;
+                });
+            }
         }
-    }    
+    }
 
     loadPreferences();
     
