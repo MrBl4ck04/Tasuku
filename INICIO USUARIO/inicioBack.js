@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadCategories();
         updateTaskCategoryOptions();
     }
-    
+
     function loadCategories() {
         const categories = JSON.parse(localStorage.getItem('categories')) || [];
         const categoriesList = document.querySelector('#categories ul');
@@ -67,11 +67,52 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryItem.innerHTML = `${category.emoji} ${category.name}`;
             categoryItem.style.color = category.color;
             categoriesList.appendChild(categoryItem);
-    
+
+            categoryItem.addEventListener('dblclick', () => openEditCategoryModal(category));
             categoryItem.addEventListener('click', () => loadTasks(category.name));
         });
     }
+
+    function openEditCategoryModal(category) {
+        document.getElementById('editCategoryModal').style.display = 'block';
+        document.getElementById('editCategoryName').value = category.name;
+        document.getElementById('editCategoryColor').value = category.color;
+        document.getElementById('editEmojiButton').dataset.selectedEmoji = category.emoji;
+        document.getElementById('editSelectedEmoji').textContent = category.emoji;
+        document.getElementById('editCategoryForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const newName = document.getElementById('editCategoryName').value;
+            const newColor = document.getElementById('editCategoryColor').value;
+            const newEmoji = document.getElementById('editEmojiButton').dataset.selectedEmoji;
+            editCategory(category.name, newName, newColor, newEmoji);
+        });
+    }
+
+    function editCategory(oldName, newName, newColor, newEmoji) {
+        const categories = JSON.parse(localStorage.getItem('categories')) || [];
+        const updatedCategories = categories.map(category => {
+            if (category.name === oldName) {
+                return { name: newName, emoji: newEmoji, color: newColor };
+            }
+            return category;
+        });
+        localStorage.setItem('categories', JSON.stringify(updatedCategories));
+
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const updatedTasks = tasks.map(task => {
+            if (task.category === oldName) {
+                task.category = newName;
+            }
+            return task;
+        });
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     
+        loadCategories();
+        updateTaskCategoryOptions();
+        document.getElementById('editCategoryModal').style.display = 'none';
+    }
+    
+
     function updateTaskCategoryOptions() {
         const taskCategorySelect = document.getElementById('taskCategory');
         const categories = JSON.parse(localStorage.getItem('categories')) || [];
@@ -113,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             markDateOnCalendar(task.date, task.statusColor);
         });
     }
-
 
     function saveTasks(tasks) {
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -292,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
     writeMonth(monthNumber);
 
     function writeMonth(month){
-
         // Recuperar las fechas marcadas del almacenamiento local
         const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
 
