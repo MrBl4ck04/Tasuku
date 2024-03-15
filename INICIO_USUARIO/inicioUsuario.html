@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas Tasuku</title>
+    <link rel="stylesheet" href="inicioEstilos.css">
+</head>
+<body>
+    <div id="logo-bar">
+        <img src="logo.png" alt="tasuku Logo" id="logo">
+    </div>
+    <header>
+        <h1>tasuku</h1>
+    </header>
+    <main>
+        <aside id="categories">
+            <div class="title-bar">
+                <h2>Categorías</h2>
+                <button id="addCategory">+</button>
+            </div>
+            <ul>
+                <li data-category="Casa">Casa</li>
+                <li data-category="Universidad">Universidad</li>
+                <li data-category="Ejercicio">Ejercicio</li>
+            </ul>
+        </aside>
+        <section id="calendar">
+            <div class="title-bar">
+                <h2>Calendario</h2>
+            </div>
+            <div class="calendar__info">
+                <div class="calendar__prev" id="prev-month">&#9664</div>
+                <div class="calendar__month" id="month"></div>
+                <div class="calendar__year" id="year"></div>
+                <div class="calendar__next" id="next-month">&#9654</div>
+            </div>
+            <div class="calendar__week">
+                <div class="calendar__day calendar__item">Lun</div>
+                <div class="calendar__day calendar__item">Mar</div>
+                <div class="calendar__day calendar__item">Mir</div>
+                <div class="calendar__day calendar__item">Jue</div>
+                <div class="calendar__day calendar__item">Vie</div>
+                <div class="calendar__day calendar__item">Sab</div>
+                <div class="calendar__day calendar__item">Dom</div>
+            </div>
+
+            <div class="calendar__dates" id="dates"></div>
+        </section>
+        <section id="tasks">
+            <div class="title-bar">
+                <h2>Tareas</h2>
+                <button id="addTask">+</button>
+            </div>
+            <div id="taskList" class="task-list">
+                <!-- Las tareas se cargarán aquí -->
+            </div>
+        </section>
+    </main>
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addTaskForm">
+                <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
+                <select id="taskCategory">
+                    <option value="Casa">Casa</option>
+                    <option value="Universidad">Universidad</option>
+                    <option value="Ejercicio">Ejercicio</option>
+                </select>
+                <select id="taskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="taskDate">
+                <button type="submit">Añadir Tarea</button>
+            </form>
+        </div>
+    </div>
+    <script src="inicioBack.js"></script>
+</body>
+</html>
