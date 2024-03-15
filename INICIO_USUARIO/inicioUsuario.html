@@ -20,10 +20,9 @@
             <input id="menu-toggle" type="checkbox">
             <label for="menu-toggle" class="menu-button"><i class="ri-menu-line"></i></label>
             <ul class="menu">
-                <li><a href="#about"><span>About</span><i class="ri-user-location-line"></i></a></li>
-                <li><a href="#projects"><span>Projects</span><i class="ri-list-check-3"></i></a></li>
-                <li><a href="#clients"><span>Clients</span><i class="ri-team-line"></i></a></li>
-                <li><a href="#contact"><span>Contact</span><i class="ri-contacts-line"></i></a></li>
+                <li><a href="#about"><span>Tareas</span><i class="ri-user-location-line"></i></a></li>
+                <li><a href="#projects"><span>Calendario</span><i class="ri-list-check-3"></i></a></li>
+                <li><a href="#clients"><span>Categorias</span><i class="ri-team-line"></i></a></li>
             </ul>
         </nav>
     </div>
@@ -101,7 +100,31 @@
             <img src="thank_you-removebg-preview.png" alt="Thank You!" id="thankyou-icon">
         <img src="notes-removebg-preview.png" alt="Notes" id="notes-icon">
         </div>
+
     </div>
+    
+     <button id="helpBtn" class="help-btn">?</button>
+        <div id="helpPopup" class="hidden">
+            <p>¡Consejos útiles!</p>
+            <p>- ¿Quieres agregar una tarea? Solo haz clic en el botón "+" y completa los detalles.</p>
+            <p>- ¿Necesitas crear una nueva categoría? Haz clic donde está el botón "+" y llena los campos solicitados.</p>
+            <p>-¿Necesitas filtrar tus tareas? Solo selecciona la categoria y las tareas se filtraran por esta </p>
+            <p>- Si deseas eliminar una tarea, simplemente haz clic derecho sobre ella.</p>
+            <p>- ¡No te preocupes por perder de vista tus tareas! El calendario te las mostrará para que las tengas siempre en mente.</p>
+            <p> ¡Esperamos que esta ayuda te haya sido util!</p>
+            
+        </div>
+        <script>
+            document.getElementById('helpBtn').onclick = function() {
+                var helpPopup = document.getElementById('helpPopup');
+                if (helpPopup.style.display === 'block') {
+                    helpPopup.style.display = 'none';
+                } else {
+                    helpPopup.style.display = 'block';
+                }
+            }
+        </script>
+        
     <script src="inicioBack.js"></script>
 </body>
 </html>

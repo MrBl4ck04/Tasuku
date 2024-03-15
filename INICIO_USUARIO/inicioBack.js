@@ -254,3 +254,22 @@ function setNewDate(){
     dates.textContent = '';
     writeMonth(monthNumber);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const menuOptions = document.querySelectorAll('.nav a');
+    const targets = {
+        'Tareas': document.querySelector('#tasks'),
+        'Calendario': document.querySelector('#calendar'),
+        'Categorias': document.querySelector('#categories')
+    };
+
+    menuOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const text = this.textContent.trim();
+            const target = targets[text];
+            if (target) {
+                Object.values(targets).forEach(el => el.classList.remove('bright-effect')); // Remover el efecto de todos los elementos primero
+                target.classList.add('bright-effect'); // Añadir el efecto al elemento seleccionado
+            }
+        });
+    });
+});

@@ -32,7 +32,7 @@ h1{
 
 header {
     /* Gradiente lineal suave que va de café a verde, de arriba hacia abajo */
-    background: linear-gradient(to bottom, #3E2C1B 0%, #4A5637 50%, #3a925a 100%);
+    background: linear-gradient(to bottom,#073812 0%,#283618 50%, #606c38 100%);
     text-align: center;
     padding: 10px 0;
     position: relative;
@@ -128,18 +128,21 @@ main {
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
-    width: 50%;
-    background-image: url('cuadro.jpg');
+    width: 30%;
+    background-color: #fefae0; /* Color beige */
+    padding: 20px;
+    border-radius: 20px;   
     background-size: cover; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 #calendar{
     display: flex;
+    border-radius: 20px;   
     flex-direction: column;
     align-items: center; /* Alinea los elementos hijos horizontalmente al centro */
     justify-content: start; /* Alinea los elementos hijos verticalmente al principio */
     padding: 10px;
-    background: #ddd;
+    background: #fefae0;
     max-width: 400px; /* Ajusta según tu diseño */
     margin: 0 auto; /* Centrar el calendario */
 }
@@ -431,7 +434,7 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background: linear-gradient(to bottom, #3a925a 0%, #023002 100%);
+    background: linear-gradient(to bottom,#606c38 0%, #283618 50%,#073812 100%);
 }
 .modal-content {
     background-color: #f5f5dc; /* Color beige */
@@ -514,3 +517,56 @@ button[type="submit"] {
     bottom: 10px; /* Posición desde abajo */
     top: auto; /* Anula la posición superior predeterminada */
 }
+/*DISEÑO DE TUTORIAL**/
+#helpBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    background: linear-gradient(95deg, #dda15e 3.2%, #bc6c25 99.5%);
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    animation: helpBtnAnim 2s infinite;
+}
+@keyframes helpBtnAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#helpPopup {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 300px;
+    background-color: #0c3513;
+    color: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    display: block;
+    z-index: 1;
+}
+#helpPopup p {
+    margin-bottom: 10px;
+}
+.bright-effect {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 35px rgb(255, 255, 255);
+    }
+    to {
+        box-shadow: 0 0 35px rgb(255, 255, 255);
+    }
+}
+
