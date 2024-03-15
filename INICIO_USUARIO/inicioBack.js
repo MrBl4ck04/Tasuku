@@ -178,16 +178,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskCategorySelect = document.getElementById('taskCategory');
         const editTaskCategorySelect = document.getElementById('editTaskCategory');
         const categories = JSON.parse(localStorage.getItem('categories')) || [];
+    
+        // Limpiar las opciones existentes
         taskCategorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
         editTaskCategorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
+    
+        // Agregar opciones a cada elemento select
         categories.forEach(category => {
             const option = document.createElement('option');
             option.value = category.name;
             option.textContent = `${category.emoji} ${category.name}`;
+    
+            // Clonar el nodo de opción para el elemento select de edición
+            const editOption = option.cloneNode(true);
+    
             taskCategorySelect.appendChild(option);
-            editTaskCategorySelect.appendChild(option);
+            editTaskCategorySelect.appendChild(editOption); // Agregar la opción clonada al elemento de edición
         });
     }
+    
 
     // Esta función edita la tarea seleccionada con los nuevos valores.
     function editTask(originalTask) {
@@ -196,10 +205,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const newStatus = document.getElementById('editTaskStatus').value;
         const newDate = document.getElementById('editTaskDate').value;
         
+        // Buscar el emoji de la nueva categoría seleccionada
+        const categories = JSON.parse(localStorage.getItem('categories')) || [];
+        const newCategoryObj = categories.find(cat => cat.name === newCategory);
+        const newCategoryEmoji = newCategoryObj ? newCategoryObj.emoji : '';
+    
         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         tasks = tasks.map(task => {
             if (task.name === originalTask.name && task.date === originalTask.date) {
-                return { ...task, name: newName, category: newCategory, status: newStatus, date: newDate };
+                return { ...task, name: newName, category: newCategory, status: newStatus, date: newDate, icon: newCategoryEmoji };
             }
             return task;
         });
@@ -210,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('editTaskModal').style.display = 'none';
         loadTasks();
     }
-
     // Esta función abre el modal de edición de tareas con los valores actuales de la tarea seleccionada.
     function openEditTaskModal(task) {
         const editTaskModal = document.getElementById('editTaskModal');
@@ -408,24 +421,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     /*Funcion que desmarca la fecha en el calendario cuando se elmina la tarea */
     function unmarkDateOnCalendar(date) {
-        // Convertir la fecha a formato año-mes-día para coincidir con las claves en markedDates
-        const formattedDate = date.split("-").map(num => parseInt(num, 10)); // Convertir a números para quitar ceros iniciales
+        const formattedDate = date.split("-").map(num => parseInt(num, 10));
         const [year, month, day] = formattedDate;
     
-        // Obtener las fechas marcadas del almacenamiento local
         const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
     
-        // Comprobar si la fecha está marcada
         if (markedDates[`${year}-${month}-${day}`]) {
-            // Si está marcada y no hay más tareas para esta fecha, se elimina la marca
             delete markedDates[`${year}-${month}-${day}`];
             localStorage.setItem('markedDates', JSON.stringify(markedDates));
-            
-            // Refrescar el calendario para reflejar la eliminación de la marca
-            dates.textContent = ''; // Limpiar las fechas actuales del calendario
-            writeMonth(monthNumber); // Reescribir el mes actual para actualizar las marcas
+    
+            // Reescribir el mes actual para actualizar las marcas
+            dates.textContent = '';
+            writeMonth(monthNumber);
         }
-    }    
+    }
+    
 
     document.getElementById('taskList').addEventListener('contextmenu', event => {
         event.preventDefault();
