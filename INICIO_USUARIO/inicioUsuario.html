@@ -10,7 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
     <header>
         <div class="login-button-container">
-            <a href="../index.html" class="login-button">Cerrar Sesion</a>
+            <button id="openSettings" class="settings-button">Personalizar</button>
+            <a href="../index.html" class="login-button">Cerrar Sesión</a>
         </div>
         <img src="logo.png" alt="tasuku Logo" id="logo"> 
         <h1>
@@ -23,15 +24,15 @@
     </header>
 </head>
 <body>
+    <header>
+        <h1>Bienvenido Usuario</h1>
+    </header>
     <div class="container">
 
     </div>
     <div id="logo-bar">
         <img src="logo.png" alt="tasuku Logo" id="logo">
     </div>
-    <header>
-        <h1>Bienvenido Usuario</h1>
-    </header>
     <main>
         <aside id="categories">
             <div class="title-bar">
@@ -141,6 +142,24 @@
         </div>
     </div>
     <emoji-picker id="emojiPicker" style="position: absolute; z-index: 2; display: none;"></emoji-picker>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSettingsModal()">&times;</span>
+            <h2>Personaliza tu Espacio de Trabajo</h2>
+
+            <label for="background-color-start">Color de Fondo 1:</label>
+            <input type="color" id="backgroundColorStart" name="background-color-start" value="#ffffff">
+            <label for="background-color-middle">Color de Fondo 2:</label>
+            <input type="color" id="backgroundColorMiddle" name="background-color-middle" value="#ffffff">
+            <label for="background-color-end">Color de Fondo 3:</label>
+            <input type="color" id="backgroundColorEnd" name="background-color-end" value="#ffffff">
+            
+            <label for="task-color">Color de Tareas:</label>
+            <input type="color" id="taskColor" name="task-color" value="#dddddd">
+            
+            <button class="apply-button" onclick="applyCustomization()">Aplicar</button>
+        </div>
+    </div>    
     
      <button id="helpBtn" class="help-btn">?</button>
         <div id="helpPopup" class="hidden">

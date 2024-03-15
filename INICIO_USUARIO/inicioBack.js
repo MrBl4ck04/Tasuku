@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTasks();
     loadCategories();
     updateTaskCategoryOptions();
+    loadPreferences();
     document.getElementById('addTask').addEventListener('click', openAddTaskModal);
     document.getElementById('addTaskForm').addEventListener('submit', addTask);
     document.querySelectorAll('.modal .close').forEach(closeButton => {
@@ -563,4 +564,70 @@ document.addEventListener('DOMContentLoaded', () => {
         dates.textContent = '';
         writeMonth(monthNumber);
     }
+
+    document.getElementById('openSettings').addEventListener('click', openSettingsModal);
+
+    function openSettingsModal() {
+        document.getElementById('settingsModal').style.display = 'block';
+    }
+
+    function closeSettingsModal() {
+        document.getElementById('settingsModal').style.display = 'none';
+    }
+
+    function applyCustomization() {
+        const backgroundColorStart = document.getElementById('backgroundColorStart').value;
+        const backgroundColorMiddle = document.getElementById('backgroundColorMiddle').value;
+        const backgroundColorEnd = document.getElementById('backgroundColorEnd').value;
+        const taskColor = document.getElementById('taskColor').value;
+        
+        // Corrección: Acceder al elemento header correctamente
+        document.querySelector('header').style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;
+        document.querySelector('main').style.background = `linear-gradient(to bottom, ${backgroundColorEnd} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorStart} 100%)`;
+        const headerElement = document.querySelector('body > header'); // Seleccionar el header dentro del body
+        headerElement.style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;        // Actualizar el color de fondo de cada tarea
+        document.querySelectorAll('.task-item').forEach(task => {
+            task.style.backgroundColor = taskColor;
+        });
+        
+        savePreferences();
+        closeSettingsModal();
+    }
+  
+    
+    function savePreferences() {
+        const preferences = {
+            backgroundColorStart: document.getElementById('backgroundColorStart').value,
+            backgroundColorMiddle: document.getElementById('backgroundColorMiddle').value,
+            backgroundColorEnd: document.getElementById('backgroundColorEnd').value,
+            taskColor: document.getElementById('taskColor').value,
+        };
+        
+        localStorage.setItem('userPreferences', JSON.stringify(preferences));
+    }
+
+    // Actualizamos la llamada al botón Aplicar para que use `applyCustomization`
+    document.querySelector('#settingsModal .apply-button').addEventListener('click', applyCustomization);
+    
+    function loadPreferences() {
+        const preferences = JSON.parse(localStorage.getItem('userPreferences'));
+        if (preferences) {
+            document.querySelector('header').style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;
+            document.querySelector('main').style.background = `linear-gradient(to bottom, ${backgroundColorEnd} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorStart} 100%)`;
+            const headerElement = document.querySelector('h1'); // Seleccionar el header dentro del body
+            headerElement.style.background = `linear-gradient(to bottom, ${backgroundColorStart} 0%, ${backgroundColorMiddle} 50%, ${backgroundColorEnd} 100%)`;        // Actualizar el color de fondo de cada tarea
+            document.querySelectorAll('.task-item').forEach(task => {
+                task.style.backgroundColor = preferences.taskColor;
+            });
+        }
+    }    
+
+    loadPreferences();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTasks();
+        loadCategories();
+        loadPreferences();
+    });
+    
 });
