@@ -16,26 +16,22 @@
             <form>
                 <h1>Crear una cuenta</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                 </div>
-                <span>o utiliza tu correo para registrarte</span>
                 <input type="text" placeholder="Nombre">
-                <input type="email" placeholder="Correo">
-                <input type="password" placeholder="Contraseña">
-                <button>Regístrate</button>
+                <input type="email" id="signup-email" placeholder="Correo">
+                <input type="password" id="signup-password" placeholder="Contraseña">
+                <button id="signup-btn">Regístrate</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form>
                 <h1>Iniciar Sesión</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                 </div>
-                <span>o utiliza tu contraseña de tu correo</span>
-                <input type="email" placeholder="Correo">
-                <input type="password" placeholder="Contraseña">
-                <a href="#">Olvidaste tu contraseña?</a>
-                <button>Iniciar Sesión</button>
+                <input type="email" id="signin-email" placeholder="Correo">
+                <input type="password" id="signin-password" placeholder="Contraseña">
+                <a href="#" id="forgot-password">Olvidaste tu contraseña?</a>
+                <button id="signin-btn">Iniciar Sesión</button>
             </form>
         </div>
         <div class="toggle-container">
@@ -53,6 +49,17 @@
             </div>
         </div>
     </div>
+
+    <div id="password-reset-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Cambiar Contraseña</h2>
+        <input class="em" type="email" id="reset-email" placeholder="Tu correo electrónico">
+        <input class="pa" type="password" id="reset-password" placeholder="Nueva Contraseña">
+        <input class="pan" type="password" id="reset-password-confirm" placeholder="Confirma Nueva Contraseña">
+        <button class="cambioBtn"  id="reset-password-btn">Cambiar Contraseña</button>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>
