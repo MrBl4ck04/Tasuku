@@ -4,16 +4,39 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
+<<<<<<< HEAD
     <script type="module">
         import 'https://unpkg.com/emoji-picker-element';
     </script>      
+=======
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <header>
+        <img src="logo.png" alt="tasuku Logo" id="logo"> 
+        <h1>
+                TASUKU 
+             </h1>
+        <img src="cabezera2.png" alt="Imagen de cabecera" id="headerImage">
+        <!-- Asegúrate de reemplazar 'headerImage.jpg' con el nombre de archivo correcto de tu imagen -->
+    </header>
+>>>>>>> origin/Calendario
 </head>
 <body>
+    <div class="container">
+        <nav class="nav">
+            <input id="menu-toggle" type="checkbox">
+            <label for="menu-toggle" class="menu-button"><i class="ri-menu-line"></i></label>
+            <ul class="menu">
+                <li><a href="#about"><span>Tareas</span><i class="ri-user-location-line"></i></a></li>
+                <li><a href="#projects"><span>Calendario</span><i class="ri-list-check-3"></i></a></li>
+                <li><a href="#clients"><span>Categorias</span><i class="ri-team-line"></i></a></li>
+            </ul>
+        </nav>
+    </div>
     <div id="logo-bar">
         <img src="logo.png" alt="tasuku Logo" id="logo">
     </div>
     <header>
-        <h1>tasuku</h1>
+        <h1>Bienvenido Usuario</h1>
     </header>
     <main>
         <aside id="categories">
@@ -47,7 +70,9 @@
 
             <div class="calendar__dates" id="dates"></div>
         </section>
+        
         <section id="tasks">
+        
             <div class="title-bar">
                 <h2>Tareas</h2>
                 <button id="addTask">+</button>
@@ -59,6 +84,7 @@
     </main>
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
+            <div class="modal-header">Añade nueva Tarea</div>
             <span class="close">&times;</span>
             <form id="addTaskForm">
                 <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
@@ -71,9 +97,12 @@
                     <option value="Completada">Completada</option>
                 </select>
                 <input type="date" id="taskDate">
-                <button type="submit">Añadir Tarea</button>
+                <button type="submit">+</button>
             </form>
+            <img src="thank_you-removebg-preview.png" alt="Thank You!" id="thankyou-icon">
+        <img src="notes-removebg-preview.png" alt="Notes" id="notes-icon">
         </div>
+
     </div>
     <div id="addCategoryModal" class="modal">
         <div class="modal-content">
@@ -118,6 +147,29 @@
         </div>
     </div>
     <emoji-picker id="emojiPicker" style="position: absolute; z-index: 2; display: none;"></emoji-picker>
+    
+     <button id="helpBtn" class="help-btn">?</button>
+        <div id="helpPopup" class="hidden">
+            <p>¡Consejos útiles!</p>
+            <p>- ¿Quieres agregar una tarea? Solo haz clic en el botón "+" y completa los detalles.</p>
+            <p>- ¿Necesitas crear una nueva categoría? Haz clic donde está el botón "+" y llena los campos solicitados.</p>
+            <p>-¿Necesitas filtrar tus tareas? Solo selecciona la categoria y las tareas se filtraran por esta </p>
+            <p>- Si deseas eliminar una tarea, simplemente haz clic derecho sobre ella.</p>
+            <p>- ¡No te preocupes por perder de vista tus tareas! El calendario te las mostrará para que las tengas siempre en mente.</p>
+            <p> ¡Esperamos que esta ayuda te haya sido util!</p>
+            
+        </div>
+        <script>
+            document.getElementById('helpBtn').onclick = function() {
+                var helpPopup = document.getElementById('helpPopup');
+                if (helpPopup.style.display === 'block') {
+                    helpPopup.style.display = 'none';
+                } else {
+                    helpPopup.style.display = 'block';
+                }
+            }
+        </script>
+        
     <script src="inicioBack.js"></script>
 </body>
 </html>
