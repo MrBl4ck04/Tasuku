@@ -140,6 +140,8 @@ main {
     justify-content: start; /* Alinea los elementos hijos verticalmente al principio */
     padding: 10px;
     background: #ddd;
+    max-width: 400px; /* Ajusta según tu diseño */
+    margin: 0 auto; /* Centrar el calendario */
 }
 
 #calendar .calendar__info{
@@ -206,21 +208,27 @@ main {
 
 /* Para los nombres de los días de la semana */
 .calendar__week {
-    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
-    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
-    margin-bottom: 20px; /* Añade un espacio debajo de los nombres de los días */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 días a la semana */
+    grid-gap: 10px;
 }
 
 /* Para los días del mes */
 .calendar__dates {
-    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
-    flex-wrap: wrap; /* Permite que los elementos de los días se envuelvan */
-    justify-content: start; /* Alinea los días al principio */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 días a la semana */
+    grid-gap: 19px;
 }
 
 .marked-date {
     background-color: #FFD700; /* Cambia este color al que desees para las fechas marcadas */
     color: black;
+    width: 40px; /* o lo que se ajuste mejor a tu diseño */
+    height: 40px; /* o lo que se ajuste mejor a tu diseño */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px; /* Espacio entre las celdas */
 }
 button {
     padding: 10px 20px;
