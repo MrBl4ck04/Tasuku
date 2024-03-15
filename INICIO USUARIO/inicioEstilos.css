@@ -233,3 +233,19 @@ li:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Parte emojis*/
+    #emojiButton, #selectedEmoji {
+        margin: 5px;
+        font-size: 13px;
+    }
+
+    #selectedEmoji {
+        display: inline-block;
+        width: 24px; /* Ajusta el tamaño según prefieras */
+    }
+
+    .emoji-picker {
+        bottom: 20px;
+        right: 20px;
+    }

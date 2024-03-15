@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
+    <script type="module">
+        import 'https://unpkg.com/emoji-picker-element';
+    </script>      
 </head>
 <body>
     <div id="logo-bar">
@@ -19,9 +22,7 @@
                 <button id="addCategory">+</button>
             </div>
             <ul>
-                <li data-category="Casa">Casa</li>
-                <li data-category="Universidad">Universidad</li>
-                <li data-category="Ejercicio">Ejercicio</li>
+
             </ul>
         </aside>
         <section id="calendar">
@@ -62,9 +63,7 @@
             <form id="addTaskForm">
                 <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
                 <select id="taskCategory">
-                    <option value="Casa">Casa</option>
-                    <option value="Universidad">Universidad</option>
-                    <option value="Ejercicio">Ejercicio</option>
+                    
                 </select>
                 <select id="taskStatus">
                     <option value="Pendiente">Pendiente</option>
@@ -76,6 +75,49 @@
             </form>
         </div>
     </div>
+    <div id="addCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddCategoryModal()">&times;</span>
+            <form id="addCategoryForm">
+                <input type="text" id="categoryName" placeholder="Nombre de la categoría" required>
+                <button type="button" id="emojiButton">Ícono</button>
+                <span id="selectedEmoji"></span>
+                <input type="color" id="categoryColor" name="categoryColor" value="#ff0000">
+                <button type="submit">Añadir Categoría</button>
+            </form>
+        </div>
+    </div>
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditTaskModal()">&times;</span>
+            <form id="editTaskForm">
+                <input type="text" id="editTaskName" placeholder="Nombre de la tarea" required>
+                <select id="editTaskCategory">
+                    <!-- Las opciones de categoría se cargarán dinámicamente aquí -->
+                </select>
+                <select id="editTaskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="editTaskDate">
+                <button type="submit">Modificar Tarea</button>
+            </form>
+        </div>
+    </div>
+    <div id="editCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('editCategoryModal').style.display = 'none'">&times;</span>
+            <form id="editCategoryForm">
+                <input type="text" id="editCategoryName" placeholder="Nombre de la categoría" required>
+                <button type="button" id="editEmojiButton">Ícono</button>
+                <span id="editSelectedEmoji"></span>
+                <input type="color" id="editCategoryColor" name="categoryColor" value="#ff0000">
+                <button type="submit">Modificar Categoría</button>
+            </form>
+        </div>
+    </div>
+    <emoji-picker id="emojiPicker" style="position: absolute; z-index: 2; display: none;"></emoji-picker>
     <script src="inicioBack.js"></script>
 </body>
 </html>
