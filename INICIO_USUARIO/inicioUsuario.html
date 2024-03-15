@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
-<<<<<<< HEAD
     <script type="module">
         import 'https://unpkg.com/emoji-picker-element';
     </script>      
-=======
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
     <header>
+        <div class="login-button-container">
+            <a href="../index.html" class="login-button">Cerrar Sesion</a>
+        </div>
         <img src="logo.png" alt="tasuku Logo" id="logo"> 
         <h1>
                 TASUKU 
              </h1>
+             
         <img src="cabezera2.png" alt="Imagen de cabecera" id="headerImage">
+        
         <!-- Asegúrate de reemplazar 'headerImage.jpg' con el nombre de archivo correcto de tu imagen -->
     </header>
->>>>>>> origin/Calendario
 </head>
 <body>
     <div class="container">
-        <nav class="nav">
-            <input id="menu-toggle" type="checkbox">
-            <label for="menu-toggle" class="menu-button"><i class="ri-menu-line"></i></label>
-            <ul class="menu">
-                <li><a href="#about"><span>Tareas</span><i class="ri-user-location-line"></i></a></li>
-                <li><a href="#projects"><span>Calendario</span><i class="ri-list-check-3"></i></a></li>
-                <li><a href="#clients"><span>Categorias</span><i class="ri-team-line"></i></a></li>
-            </ul>
-        </nav>
+
     </div>
     <div id="logo-bar">
         <img src="logo.png" alt="tasuku Logo" id="logo">
@@ -112,7 +106,7 @@
                 <button type="button" id="emojiButton">Ícono</button>
                 <span id="selectedEmoji"></span>
                 <input type="color" id="categoryColor" name="categoryColor" value="#ff0000">
-                <button type="submit">Añadir Categoría</button>
+                <button type="submit">+</button>
             </form>
         </div>
     </div>
@@ -130,7 +124,7 @@
                     <option value="Completada">Completada</option>
                 </select>
                 <input type="date" id="editTaskDate">
-                <button type="submit">Modificar Tarea</button>
+                <button type="submit">+</button>
             </form>
         </div>
     </div>
@@ -142,7 +136,7 @@
                 <button type="button" id="editEmojiButton">Ícono</button>
                 <span id="editSelectedEmoji"></span>
                 <input type="color" id="editCategoryColor" name="categoryColor" value="#ff0000">
-                <button type="submit">Modificar Categoría</button>
+                <button type="submit">+</button>
             </form>
         </div>
     </div>
