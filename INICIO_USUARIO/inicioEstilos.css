@@ -13,6 +13,11 @@ h1{
     font-family: 'Gugi'; 
     color: #f6f6f6;
 }
+h3{
+    font-size: 3em;
+    font-family: 'Gugi'; 
+    color: #f6f6f6;
+}
 #logo-bar {
     background: white;
     padding: 15 0;
@@ -91,13 +96,11 @@ h2 {
     margin-bottom: 10px; /* Espaciado debajo del título para no solapar la sombra */
 }
 
-
-
-
 #headerImage {
     width: 100%;
     height: auto;
-    display: block; /* Esto eliminará cualquier espacio extra debajo de la imagen */
+    display: block;
+    background: transparent; /* Esto eliminará cualquier espacio extra debajo de la imagen */
 }
 
 
@@ -573,7 +576,7 @@ button[type="submit"] {
 
 .login-button {
     display: inline-block;
-    background: #283618; /* Azul claro */
+    background: #283618;
     color: white;
     padding: 10px 25px;
     border-radius: 20px; /* Bordes redondeados para un aspecto moderno */

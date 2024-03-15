@@ -14,14 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Registro
+    // Registro
     signupBtn.addEventListener('click', function(e) {
         e.preventDefault();
+        const name = document.getElementById('signup-name').value;
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
         
-        localStorage.setItem(email, password);
+        const userData = {name, password}; // Creamos un objeto con el nombre y la contraseña
+        localStorage.setItem(email, JSON.stringify(userData)); // Almacenamos el objeto como un string
         alert('Usuario registrado con éxito!');
     });
+
 
     // Inicio de sesión
     signinBtn.addEventListener('click', function(e) {
@@ -30,8 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('signin-password').value;
         
         // Verificar usuario y contraseña
-        if(localStorage.getItem(email) === password) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if(userData && userData.password === password) {
             alert('Inicio de sesión exitoso!');
+            // Almacenamos temporalmente el nombre del usuario para recuperarlo en la siguiente página
+            sessionStorage.setItem('currentUserName', userData.name);
             // Redireccionar al usuario a inicioUsuario.html
             window.location.href = '../INICIO_USUARIO/inicioUsuario.html';
         } else {

@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('addCategory').addEventListener('click', openAddCategoryModal);
     document.getElementById('addCategoryForm').addEventListener('submit', addCategory);
+    const userName = sessionStorage.getItem('currentUserName') || 'Usuario';
+    document.querySelector('h3').textContent = `Hola ${userName}`;
     const emojiPicker = document.getElementById('emojiPicker');
     const emojiButton = document.getElementById('emojiButton');
     const selectedEmoji = document.getElementById('selectedEmoji');
