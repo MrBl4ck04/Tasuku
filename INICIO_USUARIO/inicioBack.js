@@ -70,89 +70,203 @@ document.addEventListener('DOMContentLoaded', () => {
 
             categoryItem.addEventListener('dblclick', () => openEditCategoryModal(category));
             categoryItem.addEventListener('click', () => loadTasks(category.name));
+            categoryItem.addEventListener('contextmenu', (event) => {
+                event.preventDefault(); // Evitar que se muestre el menú contextual por defecto
+                const confirmDelete = confirm(`¿Eliminar la categoría '${category.name}' y todas sus tareas asociadas?`);
+                if (confirmDelete) {
+                    deleteCategory(category.name);
+                }
+            });
         });
     }
+
+    function deleteCategory(categoryName) {
+        // Eliminar la categoría del almacenamiento local
+        let categories = JSON.parse(localStorage.getItem('categories')) || [];
+        categories = categories.filter(category => category.name !== categoryName);
+        localStorage.setItem('categories', JSON.stringify(categories));
+    
+        // Eliminar tareas asociadas a la categoría
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const tasksToDelete = tasks.filter(task => task.category === categoryName);
+        
+        // Actualizar la lista de tareas eliminando las tareas de la categoría
+        tasks = tasks.filter(task => task.category !== categoryName);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+        // Eliminar marcas del calendario para las tareas eliminadas
+        tasksToDelete.forEach(task => {
+            unmarkDateOnCalendar(task.date);
+        });
+    
+        // Recargar las categorías y tareas
+        loadCategories();
+        loadTasks();
+        // Asegúrate de que el calendario también se actualiza si es necesario
+        writeMonth(monthNumber);
+    }    
 
     function openEditCategoryModal(category) {
-        document.getElementById('editCategoryModal').style.display = 'block';
-        document.getElementById('editCategoryName').value = category.name;
-        document.getElementById('editCategoryColor').value = category.color;
-        document.getElementById('editEmojiButton').dataset.selectedEmoji = category.emoji;
-        document.getElementById('editSelectedEmoji').textContent = category.emoji;
-        document.getElementById('editCategoryForm').addEventListener('submit', (event) => {
+        // Configuración del modal con la información de la categoría existente
+        const editCategoryModal = document.getElementById('editCategoryModal');
+        editCategoryModal.style.display = 'block';
+        const editCategoryName = document.getElementById('editCategoryName');
+        const editCategoryColor = document.getElementById('editCategoryColor');
+        const editEmojiButton = document.getElementById('editEmojiButton');
+        const editSelectedEmoji = document.getElementById('editSelectedEmoji');
+    
+        // Asignar valores actuales
+        editCategoryName.value = category.name;
+        editCategoryColor.value = category.color;
+        editSelectedEmoji.textContent = category.emoji;
+        editEmojiButton.dataset.selectedEmoji = category.emoji;
+    
+        // Configurar el emoji picker para el botón de edición
+        editEmojiButton.onclick = function (event) {
+            emojiPicker.style.display = 'block';
+            const rect = editEmojiButton.getBoundingClientRect();
+            emojiPicker.style.left = `${rect.left + window.scrollX}px`;
+            emojiPicker.style.top = `${rect.bottom + window.scrollY}px`;
+            emojiPicker.addEventListener('emoji-click', function pickEmoji(e) {
+                editSelectedEmoji.textContent = e.detail.emoji.unicode;
+                editEmojiButton.dataset.selectedEmoji = e.detail.emoji.unicode;
+                emojiPicker.style.display = 'none';
+                emojiPicker.removeEventListener('emoji-click', pickEmoji);
+            });
+        };
+    
+        // Restablecer el evento de escucha para evitar la duplicación del evento
+        const editCategoryForm = document.getElementById('editCategoryForm');
+        editCategoryForm.onsubmit = function(event) {
             event.preventDefault();
-            const newName = document.getElementById('editCategoryName').value;
-            const newColor = document.getElementById('editCategoryColor').value;
-            const newEmoji = document.getElementById('editEmojiButton').dataset.selectedEmoji;
-            editCategory(category.name, newName, newColor, newEmoji);
-        });
+            editCategory(category, editCategoryName.value, editCategoryColor.value, editEmojiButton.dataset.selectedEmoji);
+        };
     }
-
-    function editCategory(oldName, newName, newColor, newEmoji) {
-        const categories = JSON.parse(localStorage.getItem('categories')) || [];
-        const updatedCategories = categories.map(category => {
-            if (category.name === oldName) {
-                return { name: newName, emoji: newEmoji, color: newColor };
+    
+    function editCategory(category, newName, newColor, newEmoji) {
+        let categories = JSON.parse(localStorage.getItem('categories')) || [];
+        categories = categories.map(cat => {
+            if (cat.name === category.name) {
+                return { ...cat, name: newName, color: newColor, emoji: newEmoji };
             }
-            return category;
+            return cat;
         });
-        localStorage.setItem('categories', JSON.stringify(updatedCategories));
-
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        const updatedTasks = tasks.map(task => {
-            if (task.category === oldName) {
-                task.category = newName;
+    
+        // Actualizar categorías en el almacenamiento local
+        localStorage.setItem('categories', JSON.stringify(categories));
+    
+        // Actualizar las tareas que pertenecen a la categoría que se editó
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks = tasks.map(task => {
+            if (task.category === category.name) {
+                return { ...task, category: newName };
             }
             return task;
         });
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     
+        // Actualizar tareas en el almacenamiento local
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+        // Cerrar modal y actualizar la UI
+        document.getElementById('editCategoryModal').style.display = 'none';
         loadCategories();
         updateTaskCategoryOptions();
-        document.getElementById('editCategoryModal').style.display = 'none';
-    }
-    
+        loadTasks();
+    }        
 
     function updateTaskCategoryOptions() {
         const taskCategorySelect = document.getElementById('taskCategory');
+        const editTaskCategorySelect = document.getElementById('editTaskCategory');
         const categories = JSON.parse(localStorage.getItem('categories')) || [];
         taskCategorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
+        editTaskCategorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
         categories.forEach(category => {
             const option = document.createElement('option');
             option.value = category.name;
             option.textContent = `${category.emoji} ${category.name}`;
             taskCategorySelect.appendChild(option);
+            editTaskCategorySelect.appendChild(option);
         });
+    }
+
+    // Esta función edita la tarea seleccionada con los nuevos valores.
+    function editTask(originalTask) {
+        const newName = document.getElementById('editTaskName').value;
+        const newCategory = document.getElementById('editTaskCategory').value;
+        const newStatus = document.getElementById('editTaskStatus').value;
+        const newDate = document.getElementById('editTaskDate').value;
+        
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks = tasks.map(task => {
+            if (task.name === originalTask.name && task.date === originalTask.date) {
+                return { ...task, name: newName, category: newCategory, status: newStatus, date: newDate };
+            }
+            return task;
+        });
+        
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        
+        // Cerrar modal y actualizar la UI.
+        document.getElementById('editTaskModal').style.display = 'none';
+        loadTasks();
+    }
+
+    // Esta función abre el modal de edición de tareas con los valores actuales de la tarea seleccionada.
+    function openEditTaskModal(task) {
+        const editTaskModal = document.getElementById('editTaskModal');
+        editTaskModal.style.display = 'block';
+        document.getElementById('editTaskName').value = task.name;
+        document.getElementById('editTaskCategory').value = task.category;
+        document.getElementById('editTaskStatus').value = task.status;
+        document.getElementById('editTaskDate').value = task.date;
+        
+        updateTaskCategoryOptions();
+        // Debes asegurarte de que esta función se ejecute cuando se haga doble clic en una tarea.
+        const editForm = document.getElementById('editTaskForm');
+        editForm.onsubmit = function(event) {
+            event.preventDefault();
+            editTask(task);
+        };
     }
     
     // Llamada a loadCategories para cargar las categorías al iniciar la app
     loadCategories();
     function loadTasks(category = null) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
-    const filteredTasks = category ? tasks.filter(task => task.category === category) : tasks;
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+        const filteredTasks = category ? tasks.filter(task => task.category === category) : tasks;
 
-    filteredTasks.forEach((task) => {
-        const taskItem = document.createElement('div');
-        taskItem.className = 'task-item';
+        filteredTasks.forEach((task) => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
 
-        const taskName = document.createElement('div');
-        taskName.textContent = `${task.icon} ${task.name}`; // Mostrar el emoji junto al nombre
-        taskName.className = 'task-name';
-        taskItem.appendChild(taskName);
+            const taskName = document.createElement('div');
+            taskName.textContent = `${task.icon} ${task.name}`; // Mostrar el emoji junto al nombre
+            taskName.className = 'task-name';
+            taskItem.appendChild(taskName);
 
-        const taskStatus = document.createElement('div');
-        taskStatus.className = 'task-status';
-        const statusIndicator = document.createElement('span');
-        statusIndicator.className = 'status-indicator';
-        statusIndicator.style.backgroundColor = task.statusColor;
-        taskStatus.appendChild(statusIndicator);
-        taskItem.appendChild(taskStatus);
+            const taskStatus = document.createElement('div');
+            taskStatus.className = 'task-status';
+            const statusIndicator = document.createElement('span');
+            statusIndicator.className = 'status-indicator';
+            statusIndicator.style.backgroundColor = task.statusColor;
+            taskStatus.appendChild(statusIndicator);
+            taskItem.appendChild(taskStatus);
 
-        taskList.appendChild(taskItem);
-            markDateOnCalendar(task.date, task.statusColor);
-        });
+            taskList.appendChild(taskItem);
+                markDateOnCalendar(task.date, task.statusColor);
+            });
+            // Agregar el evento doble clic a cada tarea para poder editarla.
+            const taskItems = document.querySelectorAll('.task-item');
+            taskItems.forEach(item => {
+                item.addEventListener('dblclick', () => {
+                    const taskName = item.querySelector('.task-name').textContent;
+                    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                    const taskToEdit = tasks.find(task => `${task.icon} ${task.name}` === taskName);
+                    openEditTaskModal(taskToEdit);
+                });
+            });
     }
 
     function saveTasks(tasks) {
@@ -354,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
     writeMonth(monthNumber);
 
     function writeMonth(month){
+        dates.innerHTML = '';
         // Recuperar las fechas marcadas del almacenamiento local
         const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
 
