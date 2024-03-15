@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas Tasuku</title>
+    <link rel="stylesheet" href="inicioEstilos.css">
+    <script type="module">
+        import 'https://unpkg.com/emoji-picker-element';
+    </script>      
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <header>
+        <div class="login-button-container">
+            <a href="../index.html" class="login-button">Cerrar Sesion</a>
+        </div>
+        <img src="logo.png" alt="tasuku Logo" id="logo"> 
+        <h1>
+                TASUKU 
+             </h1>
+             
+        <img src="cabezera2.png" alt="Imagen de cabecera" id="headerImage">
+        
+        <!-- Asegúrate de reemplazar 'headerImage.jpg' con el nombre de archivo correcto de tu imagen -->
+    </header>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <div id="logo-bar">
+        <img src="logo.png" alt="tasuku Logo" id="logo">
+    </div>
+    <header>
+        <h1>Bienvenido Usuario</h1>
+    </header>
+    <main>
+        <aside id="categories">
+            <div class="title-bar">
+                <h2>Categorías</h2>
+                <button id="addCategory">+</button>
+            </div>
+            <ul>
+
+            </ul>
+        </aside>
+        <section id="calendar">
+            <div class="title-bar">
+                <h2>Calendario</h2>
+            </div>
+            <div class="calendar__info">
+                <div class="calendar__prev" id="prev-month">&#9664</div>
+                <div class="calendar__month" id="month"></div>
+                <div class="calendar__year" id="year"></div>
+                <div class="calendar__next" id="next-month">&#9654</div>
+            </div>
+            <div class="calendar__week">
+                <div class="calendar__day calendar__item">Lun</div>
+                <div class="calendar__day calendar__item">Mar</div>
+                <div class="calendar__day calendar__item">Mir</div>
+                <div class="calendar__day calendar__item">Jue</div>
+                <div class="calendar__day calendar__item">Vie</div>
+                <div class="calendar__day calendar__item">Sab</div>
+                <div class="calendar__day calendar__item">Dom</div>
+            </div>
+
+            <div class="calendar__dates" id="dates"></div>
+        </section>
+        
+        <section id="tasks">
+        
+            <div class="title-bar">
+                <h2>Tareas</h2>
+                <button id="addTask">+</button>
+            </div>
+            <div id="taskList" class="task-list">
+                <!-- Las tareas se cargarán aquí -->
+            </div>
+        </section>
+    </main>
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Añade nueva Tarea</div>
+            <span class="close">&times;</span>
+            <form id="addTaskForm">
+                <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
+                <select id="taskCategory">
+                    
+                </select>
+                <select id="taskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="taskDate">
+                <button type="submit">+</button>
+            </form>
+            <img src="thank_you-removebg-preview.png" alt="Thank You!" id="thankyou-icon">
+        <img src="notes-removebg-preview.png" alt="Notes" id="notes-icon">
+        </div>
+
+    </div>
+    <div id="addCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddCategoryModal()">&times;</span>
+            <form id="addCategoryForm">
+                <input type="text" id="categoryName" placeholder="Nombre de la categoría" required>
+                <button type="button" id="emojiButton">Ícono</button>
+                <span id="selectedEmoji"></span>
+                <input type="color" id="categoryColor" name="categoryColor" value="#ff0000">
+                <button type="submit">+</button>
+            </form>
+        </div>
+    </div>
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditTaskModal()">&times;</span>
+            <form id="editTaskForm">
+                <input type="text" id="editTaskName" placeholder="Nombre de la tarea" required>
+                <select id="editTaskCategory">
+                    <!-- Las opciones de categoría se cargarán dinámicamente aquí -->
+                </select>
+                <select id="editTaskStatus">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Progreso">En Progreso</option>
+                    <option value="Completada">Completada</option>
+                </select>
+                <input type="date" id="editTaskDate">
+                <button type="submit">+</button>
+            </form>
+        </div>
+    </div>
+    <div id="editCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('editCategoryModal').style.display = 'none'">&times;</span>
+            <form id="editCategoryForm">
+                <input type="text" id="editCategoryName" placeholder="Nombre de la categoría" required>
+                <button type="button" id="editEmojiButton">Ícono</button>
+                <span id="editSelectedEmoji"></span>
+                <input type="color" id="editCategoryColor" name="categoryColor" value="#ff0000">
+                <button type="submit">+</button>
+            </form>
+        </div>
+    </div>
+    <emoji-picker id="emojiPicker" style="position: absolute; z-index: 2; display: none;"></emoji-picker>
+    
+     <button id="helpBtn" class="help-btn">?</button>
+        <div id="helpPopup" class="hidden">
+            <p>¡Consejos útiles!</p>
+            <p>- ¿Quieres agregar una tarea? Solo haz clic en el botón "+" y completa los detalles.</p>
+            <p>- ¿Necesitas crear una nueva categoría? Haz clic donde está el botón "+" y llena los campos solicitados.</p>
+            <p>-¿Necesitas filtrar tus tareas? Solo selecciona la categoria y las tareas se filtraran por esta </p>
+            <p>- Si deseas eliminar una tarea, simplemente haz clic derecho sobre ella.</p>
+            <p>- ¡No te preocupes por perder de vista tus tareas! El calendario te las mostrará para que las tengas siempre en mente.</p>
+            <p> ¡Esperamos que esta ayuda te haya sido util!</p>
+            
+        </div>
+        <script>
+            document.getElementById('helpBtn').onclick = function() {
+                var helpPopup = document.getElementById('helpPopup');
+                if (helpPopup.style.display === 'block') {
+                    helpPopup.style.display = 'none';
+                } else {
+                    helpPopup.style.display = 'block';
+                }
+            }
+        </script>
+        
+    <script src="inicioBack.js"></script>
+</body>
+</html>

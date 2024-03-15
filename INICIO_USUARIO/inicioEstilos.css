@@ -1,0 +1,591 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: Arial, sans-serif;
+}
+h1{
+    font-size: 3em;
+    font-family: 'Gugi'; 
+    color: #f6f6f6;
+}
+#logo-bar {
+    background: white;
+    padding: 15 0;
+    text-align: left; 
+    position: relative; 
+}
+
+#logo {
+    width: 100px; 
+    height: auto;
+    position: flex;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-0%);
+    z-index: 10;
+}
+
+header {
+    /* Gradiente lineal suave que va de café a verde, de arriba hacia abajo */
+    background: linear-gradient(to bottom,#073812 0%,#283618 50%, #606c38 100%);
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}   
+
+
+
+h2 {
+    font-size: 1.5em;
+}
+
+button {
+    padding: 10px 20px;
+    background: #b09058;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+ul {
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: #f5f5f5;
+}
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: 'Poppins', sans-serif; /* Cambiando a una fuente más moderna */
+    color: #333; /* Color de texto más suave */
+}
+
+h2 {
+    font-size: 1.5em;
+    font-family: 'Saira Condensed', cursive; 
+    color: #c08554; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 
+                 2px 2px 2px rgba(0, 0, 0, 0.1), 
+                 3px 3px 2px rgba(0, 0, 0, 0.1); /* Sombra suave para el efecto de profundidad */
+    margin-bottom: 10px; /* Espaciado debajo del título para no solapar la sombra */
+}
+
+
+
+
+#headerImage {
+    width: 100%;
+    height: auto;
+    display: block; /* Esto eliminará cualquier espacio extra debajo de la imagen */
+}
+
+
+#logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: auto;
+    max-height: 100%;
+    z-index: 10;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px; /* Aumentando el tamaño para mejor visibilidad */
+    color: #6D6875; /* Color más suave */
+}
+
+#categories, #tasks {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: 30%;
+    background-color: #fefae0; /* Color beige */
+    padding: 20px;
+    border-radius: 20px;   
+    background-size: cover; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#calendar{
+    display: flex;
+    border-radius: 20px;   
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos hijos horizontalmente al centro */
+    justify-content: start; /* Alinea los elementos hijos verticalmente al principio */
+    padding: 10px;
+    background: #fefae0;
+    max-width: 400px; /* Ajusta según tu diseño */
+    margin: 0 auto; /* Centrar el calendario */
+}
+
+#calendar .calendar__info{
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+#calendar .calendar_prev, #calendar .calendar_next{
+    color: #a7dd11;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+#calendar .calendar__prev{
+    margin-right: auto;
+}
+
+#calendar .calendar__next{
+    margin-left: auto;
+}
+
+#calendar .calendar_week, #calendar .calendar_dates{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+}
+
+
+#calendar .calendar_month, #calendar .calendar_year{
+    padding: .5em 1em;
+}
+
+#calendar .calendar__item{
+    text-align: center;
+    line-height: 2;
+}
+
+#calendar .calendar__today{
+    background-color: #ddd;
+    color: red;
+    width: 50%;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#calendar .calendar__last-days{
+    opacity: .3;
+}
+/* Para el título de Calendario */
+#calendar h2 {
+    /* Ajusta el estilo de tu título de Calendario aquí */
+    margin-bottom: 20px; /* Añade un espacio debajo del título */
+}
+
+/* Para la barra de información del calendario (mes y año) */
+.calendar__info {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
+    margin-bottom: 20px; /* Añade un espacio debajo de la barra de información del mes */
+}
+
+/* Para los nombres de los días de la semana */
+.calendar__week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 días a la semana */
+    grid-gap: 10px;
+}
+
+/* Para los días del mes */
+.calendar__dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 días a la semana */
+    grid-gap: 19px;
+}
+
+.marked-date {
+    background-color: #FFD700; /* Cambia este color al que desees para las fechas marcadas */
+    color: black;
+    width: 40px; /* o lo que se ajuste mejor a tu diseño */
+    height: 40px; /* o lo que se ajuste mejor a tu diseño */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px; /* Espacio entre las celdas */
+}
+button {
+    padding: 10px 20px;
+    background: #C9ADA7; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease; 
+}
+
+button:hover {
+    background: #9A8C98; 
+}
+
+li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+li:hover {
+    background-color: #F2E9E4; /* Color de hover más suave */
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.task-name {
+    flex-grow: 1;
+}
+
+.task-icon {
+    width: 20px; 
+    height: 20px;
+}
+
+.status-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+:root {
+    --menu-bg-color: #073812;
+    --menu-button-color: #ffffff;
+}
+
+.container {
+    position: fixed;
+    top: 20px; /* Ajusta según la alineación con "TASUKU" */
+    right: 20px;
+    z-index: 1000;
+}
+
+.nav [type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+
+.menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--menu-bg-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+/* Crear las tres líneas para el ícono de menú */
+.menu-button::before, .menu-button::after, .menu-button i::before {
+    content: '';
+    display: block;
+    width: 30px; /* Ancho de las líneas */
+    height: 2px; /* Altura de las líneas */
+    background: var(--menu-button-color);
+    position: absolute;
+}
+
+.menu-button::before {
+    top: 18px; 
+}
+
+.menu-button::after {
+    bottom: 18px; 
+}
+
+.menu-button i::before {
+    background: none;
+}
+
+.menu-button i {
+    position: relative;
+    width: 30px;
+    height: 2px;
+    background: var(--menu-button-color); 
+}
+
+.menu-button:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+
+.menu {
+    visibility: hidden;
+    opacity: 2;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    transition: opacity 0.5s, visibility 0.5s;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 8px rgb(255, 255, 255); 
+
+}
+
+.menu li a {
+    display: block;
+    padding: 10px;
+    background: var(--menu-bg-color);
+    color: var(--menu-button-color);
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+#menu-toggle:checked + .menu-button + .menu {
+    visibility: visible;
+    opacity: 2;
+}
+
+.menu li a:hover{
+        background-color: transparent; /* Elimina el fondo blanco */
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Añade un resplandor alrededor del enlace */
+}
+
+.menu li a span {
+    opacity: 2; /* Asegúrate de que no esté oculto */
+    transition: opacity 0.3s ease;
+    margin-left: 8px; /* Ajusta según necesidad para espacio entre ícono y texto */
+}
+/*Configuracion del main*/
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to bottom,#606c38 0%, #283618 50%,#073812 100%);
+}
+.modal-content {
+    background-color: #f5f5dc; /* Color beige */
+    margin: 10% auto; /* Centrado con menos margen superior */
+    padding: 20px;
+    border-radius: 20px; /* Esquinas curvas */
+    width: 30%; /* Ancho reducido */
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    display: flex; /* Para flexbox layout */
+    position: relative; /* Para posicionar imágenes absolutamente dentro del modal */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+.modal-header {
+    font-size: 1.5rem; /* Tamaño del título */
+    color: #333; /* Color del texto */
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.modal-content > div {
+    flex-basis: 50%; /* Cada columna toma la mitad del ancho del modal */
+    padding: 10px; /* Espaciado interno */
+}
+
+input[type="text"],
+input[type="date"],
+select,
+button[type="submit"] {
+    width: 90%; /* Ancho reducido */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+button[type="submit"] {
+    background-color: #0f3d11; /* Color de fondo */
+    width: 40px; /* Tamaño del botón */
+    height: 40px;
+    border-radius: 50%; /* Hacerlo circular */
+    position: absolute; /* Posicionamiento absoluto */
+    bottom: -20px; /* Posición debajo del modal */
+    left: calc(50% - 20px); /* Centrado horizontalmente */
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Aumentar tamaño del '+' */
+    color: white; /* Color del '+' */
+}
+
+/* Añadir los textos proporcionados como etiquetas */
+.modal-label {
+    display: block; /* Ocupa toda la anchura */
+    margin-bottom: 5px; /* Espacio antes del campo */
+    font-weight: bold; /* Hace que la etiqueta sea negrita */
+}
+
+/* Posicionamiento de las imágenes */
+#thankyou-icon,
+#notes-icon {
+    width: 50px; /* Tamaño de la imagen ajustado */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 10px; /* Posición desde arriba */
+}
+
+#thankyou-icon {
+    left: 10px; /* Posición desde la izquierda */
+}
+
+#notes-icon {
+    right: 10px; /* Posición desde la derecha */
+    bottom: 10px; /* Posición desde abajo */
+    top: auto; /* Anula la posición superior predeterminada */
+}
+/*DISEÑO DE TUTORIAL**/
+#helpBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    background: linear-gradient(95deg, #dda15e 3.2%, #bc6c25 99.5%);
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    animation: helpBtnAnim 2s infinite;
+}
+@keyframes helpBtnAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#helpPopup {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 300px;
+    background-color: #0c3513;
+    color: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+#helpPopup p {
+    margin-bottom: 10px;
+}
+.bright-effect {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 35px rgb(255, 255, 255);
+    }
+    to {
+        box-shadow: 0 0 35px rgb(255, 255, 255);
+    }
+}
+
+
+.login-button {
+    display: inline-block;
+    background: #283618; /* Azul claro */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px; /* Bordes redondeados para un aspecto moderno */
+    text-decoration: none; /* Elimina el subrayado del texto */
+    font-weight: bold; /* Texto en negrita */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra ligera para el botón */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.login-button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Tasuku</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Crear una cuenta</h1>
+                <div class="social-icons">
+                </div>
+                <input type="text" placeholder="Nombre">
+                <input type="email" id="signup-email" placeholder="Correo">
+                <input type="password" id="signup-password" placeholder="Contraseña">
+                <button id="signup-btn">Regístrate</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Iniciar Sesión</h1>
+                <div class="social-icons">
+                </div>
+                <input type="email" id="signin-email" placeholder="Correo">
+                <input type="password" id="signin-password" placeholder="Contraseña">
+                <a href="#" id="forgot-password">Olvidaste tu contraseña?</a>
+                <button id="signin-btn">Iniciar Sesión</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenido de nuevo!</h1>
+                    <p>Ingrese sus datos personales para utilizar todas las funciones del sitio</p>
+                    <button class="hidden" id="login">Iniciar Sesión</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hola, amigo!</h1>
+                    <p>Regístrese con sus datos personales para utilizar todas las funciones del sitio</p>
+                    <button class="hidden" id="register">Regístrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="password-reset-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Cambiar Contraseña</h2>
+        <input class="em" type="email" id="reset-email" placeholder="Tu correo electrónico">
+        <input class="pa" type="password" id="reset-password" placeholder="Nueva Contraseña">
+        <input class="pan" type="password" id="reset-password-confirm" placeholder="Confirma Nueva Contraseña">
+        <button class="cambioBtn"  id="reset-password-btn">Cambiar Contraseña</button>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
