@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Gestor de Tareas Tasuku</title>
     <link rel="stylesheet" href="inicioEstilos.css">
+    <script type="module">
+        import 'https://unpkg.com/emoji-picker-element';
+    </script>      
 </head>
 <body>
     <div id="logo-bar">
@@ -76,6 +79,19 @@
             </form>
         </div>
     </div>
+    <div id="addCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddCategoryModal()">&times;</span>
+            <form id="addCategoryForm">
+                <input type="text" id="categoryName" placeholder="Nombre de la categoría" required>
+                <button type="button" id="emojiButton">Ícono</button>
+                <span id="selectedEmoji"></span>
+                <input type="color" id="categoryColor" name="categoryColor" value="#ff0000">
+                <button type="submit">Añadir Categoría</button>
+            </form>
+        </div>
+    </div>
+    <emoji-picker id="emojiPicker" style="position: absolute; z-index: 2; display: none;"></emoji-picker>
     <script src="inicioBack.js"></script>
 </body>
 </html>
