@@ -1,45 +1,13 @@
-<<<<<<< HEAD
-body, h1, h2, ul, li {
-=======
 @import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 body, ul, li {
->>>>>>> origin/Interfaz
     margin: 0;
     padding: 0;
     list-style-type: none;
     font-family: Arial, sans-serif;
 }
-<<<<<<< HEAD
-
-#logo-bar {
-    background: white;
-    padding: 30px 0;
-    text-align: left; /* Alinear el logo a la izquierda */
-    position: relative; /* Para posicionar el logo dentro de esta barra */
-}
-
-#logo {
-    position: absolute;
-    left: 10px;
-    top: 50%; /* Centrar el logo verticalmente */
-    transform: translateY(-50%); /* Ajuste fino para centrar el logo exactamente */
-    height: 50px; /* Ajusta esta altura como sea necesario */
-}
-
-header {
-    background: #58A4B0;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-main {
-    display: flex;
-    justify-content: space-between;
-=======
 h1{
     font-size: 3em;
     font-family: 'Gugi'; 
@@ -68,7 +36,6 @@ header {
     text-align: center;
     padding: 10px 0;
     position: relative;
->>>>>>> origin/Interfaz
 }
 
 .title-bar {
@@ -77,8 +44,6 @@ header {
     align-items: center;
 }   
 
-<<<<<<< HEAD
-=======
 
 
 h2 {
@@ -159,24 +124,15 @@ main {
     color: #6D6875; /* Color más suave */
 }
 
->>>>>>> origin/Interfaz
 #categories, #tasks {
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
-<<<<<<< HEAD
-    width: 30%;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-=======
     width: 50%;
     background-image: url('cuadro.jpg');
     background-size: cover; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
->>>>>>> origin/Interfaz
 #calendar{
     display: flex;
     flex-direction: column;
@@ -194,11 +150,7 @@ main {
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-#calendar .calendar__prev, #calendar .calendar__next{
-=======
 #calendar .calendar_prev, #calendar .calendar_next{
->>>>>>> origin/Interfaz
     color: #a7dd11;
     cursor: pointer;
     font-size: 1.3em;
@@ -212,22 +164,14 @@ main {
     margin-left: auto;
 }
 
-<<<<<<< HEAD
-#calendar .calendar__week, #calendar .calendar__dates{
-=======
 #calendar .calendar_week, #calendar .calendar_dates{
->>>>>>> origin/Interfaz
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 10px;
 }
 
 
-<<<<<<< HEAD
-#calendar .calendar__month, #calendar .calendar__year{
-=======
 #calendar .calendar_month, #calendar .calendar_year{
->>>>>>> origin/Interfaz
     padding: .5em 1em;
 }
 
@@ -247,10 +191,6 @@ main {
 #calendar .calendar__last-days{
     opacity: .3;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Interfaz
 /* Para el título de Calendario */
 #calendar h2 {
     /* Ajusta el estilo de tu título de Calendario aquí */
@@ -282,38 +222,6 @@ main {
     background-color: #FFD700; /* Cambia este color al que desees para las fechas marcadas */
     color: black;
 }
-<<<<<<< HEAD
-
-h2 {
-    font-size: 1.5em;
-}
-
-button {
-    padding: 10px 20px;
-    background: #58A4B0;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #429293;
-}
-
-ul {
-    padding: 0;
-}
-
-li {
-    padding: 5px 0;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-li:hover {
-    background-color: #f5f5f5;
-=======
 button {
     padding: 10px 20px;
     background: #C9ADA7; 
@@ -337,7 +245,6 @@ li {
 
 li:hover {
     background-color: #F2E9E4; /* Color de hover más suave */
->>>>>>> origin/Interfaz
 }
 
 .task-list {
@@ -360,13 +267,8 @@ li:hover {
 }
 
 .task-icon {
-<<<<<<< HEAD
-    width: 20px; /* Ajusta según el tamaño de tu icono */
-    height: 20px; /* Ajusta según el tamaño de tu icono */
-=======
     width: 20px; 
     height: 20px;
->>>>>>> origin/Interfaz
 }
 
 .status-indicator {
@@ -408,9 +310,6 @@ li:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
-<<<<<<< HEAD
-}
-=======
 }
 :root {
     --menu-bg-color: #073812;
@@ -607,4 +506,3 @@ button[type="submit"] {
     bottom: 10px; /* Posición desde abajo */
     top: auto; /* Anula la posición superior predeterminada */
 }
->>>>>>> origin/Interfaz
