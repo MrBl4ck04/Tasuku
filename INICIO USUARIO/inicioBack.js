@@ -56,6 +56,7 @@ function loadTasks(category = null) {
     });
 }
 
+
 function saveTasks(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     loadTasks();
@@ -111,11 +112,19 @@ function markDateOnCalendar(date, statusColor) {
                 if (currentYear === year && monthNumber === monthIndex) {
                     calendarDate.style.backgroundColor = statusColor;
                     calendarDate.style.color = 'white'; // Asegurar que el texto sea legible
+
+                    // Guardar la información de la fecha marcada en el almacenamiento local
+                    const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
+                    if (!markedDates[`${year}-${month}-${day}`]) {
+                        markedDates[`${year}-${month}-${day}`] = statusColor;
+                        localStorage.setItem('markedDates', JSON.stringify(markedDates));
+                    }
                 }
             }
         }
     });
 }
+
 
 function getStatusColor(status) {
     const statusColors = {
@@ -165,6 +174,9 @@ writeMonth(monthNumber);
 
 function writeMonth(month){
 
+    // Recuperar las fechas marcadas del almacenamiento local
+    const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
+
     for (let i = startDay(); i > 0 ; i--){
         dates.innerHTML += ` <div class="calendar__date calendar__item calendar__last-days">${getTotalDays(monthNumber - 1) - (i - 1)}</div> `;
     }
@@ -174,10 +186,22 @@ function writeMonth(month){
         if ( i ===  currentDay){
             dates.innerHTML += ` <div class="calendar__date calendar__item calendar__today">${i}</div> `;
         }else{
-            dates.innerHTML += ` <div class="calendar__date calendar__item">${i}</div> `;
+            // Verificar si la fecha está marcada y pertenece al mes actual
+            const currentDate = new Date(currentYear, month, i);
+            const formattedDate = `${currentYear}-${month + 1}-${i}`;
+            const markedDateColor = markedDates[formattedDate];
+
+            if (markedDateColor && currentDate.getMonth() === month) {
+                const dateStyle = `style="background-color: ${markedDateColor}"`;
+                dates.innerHTML += ` <div class="calendar__date calendar__item" ${dateStyle}>${i}</div> `;
+            } else {
+                dates.innerHTML += ` <div class="calendar__date calendar__item">${i}</div> `;
+            }
         }
     }
 }
+
+
 
 function getTotalDays(month){
     if (month === -1) month = 11;
