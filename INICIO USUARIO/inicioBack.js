@@ -52,8 +52,10 @@ function loadTasks(category = null) {
         });
 
         taskList.appendChild(taskItem);
+        markDateOnCalendar(task.date, task.statusColor);
     });
 }
+
 
 function saveTasks(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -88,7 +90,41 @@ function addTask(event) {
     tasks.push(task);
     saveTasks(tasks);
     closeAddTaskModal();
+
+    // Marcar la fecha en el calendario
+    markDateOnCalendar(taskDate, task.statusColor);
 }
+
+function markDateOnCalendar(date, statusColor) {
+    const calendarDates = document.querySelectorAll('.calendar__date');
+    const [year, month, day] = date.split('-').map(Number);
+
+    // Formatear el mes para que coincida con el índice del array
+    const monthIndex = month - 1;
+
+    // Iterar sobre los elementos de fecha en el calendario
+    calendarDates.forEach(calendarDate => {
+        const dateText = calendarDate.textContent.trim();
+        if (dateText !== '') {
+            const calendarDay = parseInt(dateText, 10);
+            if (calendarDay === day) {
+                // Comparar el año y el mes para asegurarse de que coincidan
+                if (currentYear === year && monthNumber === monthIndex) {
+                    calendarDate.style.backgroundColor = statusColor;
+                    calendarDate.style.color = 'white'; // Asegurar que el texto sea legible
+
+                    // Guardar la información de la fecha marcada en el almacenamiento local
+                    const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
+                    if (!markedDates[`${year}-${month}-${day}`]) {
+                        markedDates[`${year}-${month}-${day}`] = statusColor;
+                        localStorage.setItem('markedDates', JSON.stringify(markedDates));
+                    }
+                }
+            }
+        }
+    });
+}
+
 
 function getStatusColor(status) {
     const statusColors = {
@@ -112,3 +148,109 @@ document.querySelectorAll('#categories ul li').forEach(item => {
         loadTasks(category);
     });
 });
+
+/*INICIO DE MES */
+let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diembre'];
+
+let currentDate = new Date();
+let currentDay = currentDate.getDate();
+let monthNumber = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+
+let dates = document.getElementById('dates');
+let month = document.getElementById('month');
+let year = document.getElementById('year');
+
+let prevMonthDOM = document.getElementById('prev-month');
+let nextMonthDOM = document.getElementById('next-month');
+
+month.textContent = monthNames[monthNumber];
+year.textContent = currentYear.toString();
+
+prevMonthDOM.addEventListener('click', ()=>lastMonth());
+nextMonthDOM.addEventListener('click', ()=>nextMonth());
+
+writeMonth(monthNumber);
+
+function writeMonth(month){
+
+    // Recuperar las fechas marcadas del almacenamiento local
+    const markedDates = JSON.parse(localStorage.getItem('markedDates')) || {};
+
+    for (let i = startDay(); i > 0 ; i--){
+        dates.innerHTML += ` <div class="calendar__date calendar__item calendar__last-days">${getTotalDays(monthNumber - 1) - (i - 1)}</div> `;
+    }
+
+    for (let i = 1 ; i <= getTotalDays(month); i++ ){
+
+        if ( i ===  currentDay){
+            dates.innerHTML += ` <div class="calendar__date calendar__item calendar__today">${i}</div> `;
+        }else{
+            // Verificar si la fecha está marcada y pertenece al mes actual
+            const currentDate = new Date(currentYear, month, i);
+            const formattedDate = `${currentYear}-${month + 1}-${i}`;
+            const markedDateColor = markedDates[formattedDate];
+
+            if (markedDateColor && currentDate.getMonth() === month) {
+                const dateStyle = `style="background-color: ${markedDateColor}"`;
+                dates.innerHTML += ` <div class="calendar__date calendar__item" ${dateStyle}>${i}</div> `;
+            } else {
+                dates.innerHTML += ` <div class="calendar__date calendar__item">${i}</div> `;
+            }
+        }
+    }
+}
+
+
+
+function getTotalDays(month){
+    if (month === -1) month = 11;
+
+    if  ( month == 0 || month == 2 || month == 4 || month == 7 || month == 9 || month == 11){
+        return 31;
+    }else if (month == 3 || month == 5 || month == 8 || month == 10 || month == 12){
+        return 30;
+    }else{
+        return isLeap() ? 29:28;
+    }
+}
+
+function isLeap(){
+    return((currentYear % 100 !== 0) && (currentYear % 4 === 0) || (currentYear % 400 === 0))
+}
+
+function startDay(){
+    let start = new Date(currentYear, monthNumber, 1);
+    return((start.getDay() - 1) === -1) ?  6 : start.getDay() - 1;
+}
+
+function lastMonth(){
+    if (monthNumber !== 0){
+        monthNumber--;
+    }else{
+        monthNumber = 11;
+        currentYear--;
+    }
+
+    setNewDate();
+}
+
+function nextMonth(){
+    if (monthNumber !== 11){
+        monthNumber++;
+    }else{
+        monthNumber = 0;
+        currentYear++;
+    }
+
+    setNewDate();
+}
+
+function setNewDate(){
+    currentDate.setFullYear(currentYear, monthNumber, currentDate);
+    month.textContent = monthNames[monthNumber];
+    year.textContent = currentYear.toString();
+
+    dates.textContent = '';
+    writeMonth(monthNumber);
+}
