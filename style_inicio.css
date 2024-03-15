@@ -199,7 +199,7 @@ header .info-text .scroll::before{
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #2b2f4b;
+    background-color: #283618;
     color: #fff;
     border: 1px solid transparent;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
