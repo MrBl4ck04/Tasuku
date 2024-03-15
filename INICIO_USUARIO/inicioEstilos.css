@@ -2,7 +2,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
-body,h2, ul, li {
+body, ul, li {
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -44,14 +44,7 @@ header {
     align-items: center;
 }   
 
-#categories, #calendar, #tasks {
-    border: 1px solid #ddd;
-    margin: 10px;
-    padding: 10px;
-    width: 30%;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+
 
 h2 {
     font-size: 1.5em;
@@ -131,7 +124,7 @@ main {
     color: #6D6875; /* Color más suave */
 }
 
-#categories, #calendar, #tasks {
+#categories, #tasks {
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
@@ -140,8 +133,95 @@ main {
     background-size: cover; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+#calendar{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos hijos horizontalmente al centro */
+    justify-content: start; /* Alinea los elementos hijos verticalmente al principio */
+    padding: 10px;
+    background: #ddd;
+}
+
+#calendar .calendar__info{
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+#calendar .calendar_prev, #calendar .calendar_next{
+    color: #a7dd11;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+#calendar .calendar__prev{
+    margin-right: auto;
+}
+
+#calendar .calendar__next{
+    margin-left: auto;
+}
+
+#calendar .calendar_week, #calendar .calendar_dates{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+}
 
 
+#calendar .calendar_month, #calendar .calendar_year{
+    padding: .5em 1em;
+}
+
+#calendar .calendar__item{
+    text-align: center;
+    line-height: 2;
+}
+
+#calendar .calendar__today{
+    background-color: #ddd;
+    color: red;
+    width: 50%;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#calendar .calendar__last-days{
+    opacity: .3;
+}
+/* Para el título de Calendario */
+#calendar h2 {
+    /* Ajusta el estilo de tu título de Calendario aquí */
+    margin-bottom: 20px; /* Añade un espacio debajo del título */
+}
+
+/* Para la barra de información del calendario (mes y año) */
+.calendar__info {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
+    margin-bottom: 20px; /* Añade un espacio debajo de la barra de información del mes */
+}
+
+/* Para los nombres de los días de la semana */
+.calendar__week {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Espaciado uniforme entre los elementos */
+    margin-bottom: 20px; /* Añade un espacio debajo de los nombres de los días */
+}
+
+/* Para los días del mes */
+.calendar__dates {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    flex-wrap: wrap; /* Permite que los elementos de los días se envuelvan */
+    justify-content: start; /* Alinea los días al principio */
+}
+
+.marked-date {
+    background-color: #FFD700; /* Cambia este color al que desees para las fechas marcadas */
+    color: black;
+}
 button {
     padding: 10px 20px;
     background: #C9ADA7; 
