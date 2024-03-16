@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             editTaskCategorySelect.appendChild(editOption); // Agregar la opción clonada al elemento de edición
         });
     }
-    
+
 
     // Esta función edita la tarea seleccionada con los nuevos valores.
     function editTask(originalTask) {
@@ -216,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         tasks = tasks.map(task => {
             if (task.name === originalTask.name && task.date === originalTask.date) {
+                // Eliminar la marca de la fecha anterior en el calendario
+                unmarkDateOnCalendar(originalTask.date);
+                // Actualizar la tarea con los nuevos valores
                 return { ...task, name: newName, category: newCategory, status: newStatus, date: newDate, icon: newCategoryEmoji, statusColor: newStatusColor };
             }
             return task;
